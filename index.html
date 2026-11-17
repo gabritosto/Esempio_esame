@@ -4,15 +4,2581 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MoodMap — Wireframe Low Fidelity</title>
-    <meta name="description" content="Wireframe low-fidelity mobile-first per registrare l'umore universitario e visualizzare lo stato del campus." />
+    <meta
+      name="description"
+      content="Wireframe low-fidelity mobile-first per registrare l'umore universitario e visualizzare lo stato del campus."
+    />
     <meta property="og:title" content="MoodMap" />
-    <meta property="og:description" content="Wireframe low-fidelity mobile-first per registrare l'umore universitario e visualizzare lo stato del campus." />
+    <meta
+      property="og:description"
+      content="Wireframe low-fidelity mobile-first per registrare l'umore universitario e visualizzare lo stato del campus."
+    />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <style>
+      /* Base Reset & System Font */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: #d4d4d4;
+        box-shadow: none !important;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #111111;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+      }
+      h1, h2, h3, p { margin: 0; }
+      button, input, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        color: inherit;
+        margin: 0;
+      }
+      button { background: transparent; }
+
+      /* Scrollbar */
+      .wireframe-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+      .wireframe-scroll::-webkit-scrollbar-track { background: #ffffff; }
+      .wireframe-scroll::-webkit-scrollbar-thumb { background: #d4d4d4; }
+
+      /* Display & Layout */
+      .hidden { display: none !important; }
+      .block { display: block; }
+      .inline-block { display: inline-block; }
+      .flex { display: flex; }
+      .inline-flex { display: inline-flex; }
+      .grid { display: grid; }
+      .flex-col { flex-direction: column; }
+      .flex-wrap { flex-wrap: wrap; }
+      .flex-1 { flex: 1 1 0%; }
+      .shrink-0 { flex-shrink: 0; }
+      .items-center { align-items: center; }
+      .items-start { align-items: flex-start; }
+      .items-end { align-items: flex-end; }
+      .justify-center { justify-content: center; }
+      .justify-between { justify-content: space-between; }
+      .justify-start { justify-content: flex-start; }
+      .justify-end { justify-content: flex-end; }
+      .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .grid-cols-7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+      .col-span-2 { grid-column: span 2 / span 2; }
+      .relative { position: relative; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+      }
+
+      /* Sizing (iPhone 13 mini: 375x812) */
+      .w-full { width: 100%; }
+      .w-phone { width: 375px; }
+      .h-phone { height: 812px; }
+      .max-w-full { max-width: 100%; }
+      .max-h-screen-safe { max-height: 100dvh; }
+      .min-h-screen { min-height: 100vh; }
+      .min-h-0 { min-height: 0px; }
+      .min-w-0 { min-width: 0px; }
+      .min-h-44 { min-height: 44px; }
+      .min-w-44 { min-width: 44px; }
+      .min-h-60 { min-height: 60px; }
+      .min-h-68 { min-height: 68px; }
+      .min-h-80 { min-height: 80px; }
+      .min-h-240 { min-height: 240px; }
+      .h-px { height: 1px; }
+      .h-2 { height: 0.5rem; }
+      .h-3 { height: 0.75rem; }
+      .h-4 { height: 1rem; }
+      .h-5 { height: 1.25rem; }
+      .h-6 { height: 1.5rem; }
+      .h-7 { height: 1.75rem; }
+      .h-8 { height: 2rem; }
+      .h-9 { height: 2.25rem; }
+      .h-10 { height: 2.5rem; }
+      .h-12 { height: 3rem; }
+      .h-14 { height: 3.5rem; }
+      .h-16 { height: 4rem; }
+      .h-20 { height: 5rem; }
+      .h-32 { height: 8rem; }
+      .h-40 { height: 10rem; }
+      .h-full { height: 100%; }
+      .h-auto { height: auto; }
+      .w-2 { width: 0.5rem; }
+      .w-3 { width: 0.75rem; }
+      .w-4 { width: 1rem; }
+      .w-5 { width: 1.25rem; }
+      .w-6 { width: 1.5rem; }
+      .w-9 { width: 2.25rem; }
+      .w-10 { width: 2.5rem; }
+      .w-12 { width: 3rem; }
+      .w-16 { width: 4rem; }
+      .w-20 { width: 5rem; }
+      .w-28 { width: 7rem; }
+      .w-40 { width: 10rem; }
+      .w-48 { width: 12rem; }
+      .w-52 { width: 13rem; }
+      .w-2-3 { width: 66.666667%; }
+      .max-w-bar { max-width: 28px; }
+
+      /* Spacing */
+      .gap-0-5 { gap: 0.125rem; }
+      .gap-1 { gap: 0.25rem; }
+      .gap-1-5 { gap: 0.375rem; }
+      .gap-2 { gap: 0.5rem; }
+      .gap-2-5 { gap: 0.625rem; }
+      .gap-3 { gap: 0.75rem; }
+      .gap-4 { gap: 1rem; }
+      .gap-5 { gap: 1.25rem; }
+      .gap-6 { gap: 1.5rem; }
+      .p-0 { padding: 0; }
+      .p-2 { padding: 0.5rem; }
+      .p-2-5 { padding: 0.625rem; }
+      .p-3 { padding: 0.75rem; }
+      .p-3-5 { padding: 0.875rem; }
+      .p-4 { padding: 1rem; }
+      .p-6 { padding: 1.5rem; }
+      .px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
+      .px-1-5 { padding-left: 0.375rem; padding-right: 0.375rem; }
+      .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+      .px-2-5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+      .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .px-3-5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .py-0-5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+      .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .py-2-5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+      .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+      .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+      .pt-1 { padding-top: 0.25rem; }
+      .pt-1-5 { padding-top: 0.375rem; }
+      .pt-2 { padding-top: 0.5rem; }
+      .pt-3 { padding-top: 0.75rem; }
+      .pt-4 { padding-top: 1rem; }
+      .pt-6 { padding-top: 1.5rem; }
+      .pb-1 { padding-bottom: 0.25rem; }
+      .pb-2 { padding-bottom: 0.5rem; }
+      .pb-3 { padding-bottom: 0.75rem; }
+      .pb-4 { padding-bottom: 1rem; }
+      .mt-1 { margin-top: 0.25rem; }
+      .mt-3 { margin-top: 0.75rem; }
+      .-ml-2 { margin-left: -0.5rem; }
+
+      /* Overflow */
+      .overflow-hidden { overflow: hidden; }
+      .overflow-y-auto { overflow-y: auto; }
+      .overflow-x-auto { overflow-x: auto; }
+
+      /* Borders & Radius */
+      .border { border-width: 1px; }
+      .border-2 { border-width: 2px; }
+      .border-t { border-top-width: 1px; }
+      .border-b { border-bottom-width: 1px; }
+      .border-dashed { border-style: dashed; }
+      .rounded { border-radius: 0.25rem; }
+      .rounded-md { border-radius: 0.375rem; }
+      .rounded-lg { border-radius: 0.5rem; }
+      .rounded-2xl { border-radius: 1rem; }
+      .rounded-full { border-radius: 9999px; }
+      .rounded-frame { border-radius: 0px; }
+
+      @media (min-width: 640px) {
+        .sm-p-4 { padding: 1rem; }
+        .sm-rounded-frame { border-radius: 28px; }
+      }
+
+      /* Colors (Grayscale + Red ONLY for Errors) */
+      .bg-white { background-color: #ffffff; }
+      .bg-neutral-50 { background-color: #fafafa; }
+      .bg-neutral-100 { background-color: #f5f5f5; }
+      .bg-neutral-200 { background-color: #e5e5e5; }
+      .bg-neutral-300 { background-color: #d4d4d4; }
+      .bg-neutral-400 { background-color: #a3a3a3; }
+      .bg-neutral-500 { background-color: #737373; }
+      .bg-neutral-600 { background-color: #525252; }
+      .bg-neutral-800 { background-color: #262626; }
+      .bg-neutral-900 { background-color: #171717; }
+      .bg-red-50 { background-color: #fef2f2; }
+      .bg-red-50-soft { background-color: rgba(254, 242, 242, 0.35); }
+
+      .text-white { color: #ffffff; }
+      .text-neutral-400 { color: #a3a3a3; }
+      .text-neutral-500 { color: #737373; }
+      .text-neutral-600 { color: #525252; }
+      .text-neutral-700 { color: #404040; }
+      .text-neutral-800 { color: #262626; }
+      .text-neutral-900 { color: #171717; }
+      .text-red-700 { color: #b91c1c; }
+
+      .border-white { border-color: #ffffff; }
+      .border-neutral-200 { border-color: #e5e5e5; }
+      .border-neutral-300 { border-color: #d4d4d4; }
+      .border-neutral-400 { border-color: #a3a3a3; }
+      .border-neutral-500 { border-color: #737373; }
+      .border-neutral-600 { border-color: #525252; }
+      .border-neutral-700 { border-color: #404040; }
+      .border-neutral-900 { border-color: #171717; }
+      .border-red-400 { border-color: #f87171; }
+      .border-red-500 { border-color: #ef4444; }
+      .border-red-600 { border-color: #dc2626; }
+
+      .outline-selected {
+        outline: 2px solid #171717;
+        outline-offset: 1px;
+      }
+
+      /* Typography */
+      .text-10 { font-size: 10px; }
+      .text-11 { font-size: 11px; }
+      .text-xs { font-size: 0.75rem; line-height: 1rem; }
+      .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      .text-base { font-size: 1rem; line-height: 1.5rem; }
+      .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .font-normal { font-weight: 400; }
+      .font-medium { font-weight: 500; }
+      .font-semibold { font-weight: 600; }
+      .font-bold { font-weight: 700; }
+      .uppercase { text-transform: uppercase; }
+      .tracking-tight { letter-spacing: -0.025em; }
+      .tracking-wide { letter-spacing: 0.025em; }
+      .tracking-wider { letter-spacing: 0.05em; }
+      .leading-none { line-height: 1; }
+      .leading-tight { line-height: 1.25; }
+      .leading-relaxed { line-height: 1.625; }
+      .text-center { text-align: center; }
+      .text-left { text-align: left; }
+      .text-right { text-align: right; }
+      .underline { text-decoration: underline; }
+      .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .whitespace-nowrap { white-space: nowrap; }
+      .tabular-nums { font-variant-numeric: tabular-nums; }
+      .opacity-90 { opacity: 0.9; }
+
+      /* Interactive */
+      .cursor-pointer { cursor: pointer; }
+      .select-none { user-select: none; }
+      .resize-none { resize: none; }
+      .accent-neutral-900 { accent-color: #171717; }
+      .hover-bg-100:hover { background-color: #f5f5f5; }
+      .hover-bg-50:hover { background-color: #fafafa; }
+      .hover-bg-800:hover { background-color: #262626; }
+      .hover-border-900:hover { border-color: #171717; }
+      .focus-border-900:focus { outline: none; border-color: #171717; }
+      button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+        outline: 2px solid #171717;
+        outline-offset: 2px;
+      }
+
+      /* 1-10 Weekly Luminosity Scale (1 near white -> 10 black) */
+      .lum-1 { background-color: #fafafa; color: #171717; border-color: #171717; }
+      .lum-2 { background-color: #ededed; color: #171717; border-color: #171717; }
+      .lum-3 { background-color: #dcdcdc; color: #171717; border-color: #171717; }
+      .lum-4 { background-color: #c4c4c4; color: #171717; border-color: #171717; }
+      .lum-5 { background-color: #a8a8a8; color: #171717; border-color: #171717; }
+      .lum-6 { background-color: #8c8c8c; color: #ffffff; border-color: #171717; }
+      .lum-7 { background-color: #6e6e6e; color: #ffffff; border-color: #171717; }
+      .lum-8 { background-color: #4f4f4f; color: #ffffff; border-color: #171717; }
+      .lum-9 { background-color: #2e2e2e; color: #ffffff; border-color: #171717; }
+      .lum-10 { background-color: #111111; color: #ffffff; border-color: #171717; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="min-h-screen w-full bg-neutral-100 flex items-center justify-center p-0 sm-p-4">
+      <!-- iPhone 13 mini fixed container: 375 x 812 px -->
+      <main
+        aria-label="MoodMap Smartphone Wireframe iPhone 13 mini"
+        class="w-phone h-phone max-w-full max-h-screen-safe bg-white border-2 border-neutral-900 rounded-frame sm-rounded-frame overflow-hidden flex flex-col"
+      >
+        <!-- ==================== 1. SPLASH ==================== -->
+        <section id="screen-splash" class="flex-1 flex flex-col items-center justify-between px-6 py-10 bg-white">
+          <div></div>
+          <div class="flex flex-col items-center gap-4">
+            <div class="w-20 h-20 border-2 border-neutral-900 rounded-2xl flex items-center justify-center bg-white">
+              <div class="w-10 h-10 rounded-full border-2 border-neutral-900 flex items-center justify-center">
+                <div class="w-3 h-3 rounded-full bg-neutral-900"></div>
+              </div>
+            </div>
+            <div class="text-center">
+              <h1 class="text-2xl font-bold tracking-tight text-neutral-900">MoodMap</h1>
+              <p class="text-xs text-neutral-500 mt-1">Campus Mood Wireframe</p>
+            </div>
+          </div>
+          <div class="w-full flex flex-col items-center gap-4">
+            <div class="w-48 flex flex-col gap-1-5 items-center">
+              <div class="w-full h-2 border border-neutral-900 rounded-full overflow-hidden bg-white">
+                <div class="h-full w-2-3 bg-neutral-900"></div>
+              </div>
+              <span class="text-xs text-neutral-600">Caricamento...</span>
+            </div>
+            <button
+              type="button"
+              id="btn-splash-continue"
+              class="min-h-44 px-3 py-2 text-xs font-medium rounded-md border border-neutral-900 bg-white text-neutral-900 hover-bg-100 cursor-pointer"
+            >
+              Continua
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 2. ONBOARDING ==================== -->
+        <section id="screen-onboarding" class="hidden flex-1 flex flex-col justify-between px-6 py-6 bg-white">
+          <div class="flex justify-end">
+            <button
+              type="button"
+              id="btn-onboarding-skip"
+              class="min-h-44 min-w-44 px-3 text-sm font-medium text-neutral-700 cursor-pointer"
+            >
+              Salta
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center text-center gap-5">
+            <div id="onboarding-graphic" class="w-52 h-40 border border-neutral-400 bg-neutral-100 rounded-md flex items-center justify-center"></div>
+            <div class="flex flex-col gap-2">
+              <h2 id="onboarding-title" class="text-xl font-bold text-neutral-900"></h2>
+              <p id="onboarding-text" class="text-sm text-neutral-600 leading-relaxed"></p>
+            </div>
+            <div id="onboarding-dots" class="flex items-center gap-2" aria-label="Progresso onboarding"></div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <button
+              type="button"
+              id="btn-onboarding-next"
+              class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+            >
+              Avanti
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 3. AUTH (LOGIN / REGISTRAZIONE) ==================== -->
+        <section id="screen-auth" class="hidden flex-1 overflow-y-auto wireframe-scroll px-6 py-8 bg-white flex flex-col justify-between gap-6">
+          <div class="flex flex-col gap-5">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500">MoodMap</span>
+              <h1 id="auth-heading" class="text-2xl font-bold text-neutral-900">Accedi al tuo account</h1>
+              <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div class="grid grid-cols-2 border border-neutral-900 rounded-md overflow-hidden">
+              <button type="button" id="tab-auth-login" class="min-h-44 text-sm font-medium bg-neutral-900 text-white cursor-pointer">
+                Accedi
+              </button>
+              <button type="button" id="tab-auth-register" class="min-h-44 text-sm font-medium bg-white text-neutral-900 cursor-pointer">
+                Registrati
+              </button>
+            </div>
+
+            <div id="auth-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex flex-col gap-0-5" role="alert">
+              <span class="text-xs font-bold uppercase tracking-wide text-red-700">Dati non validi</span>
+              <span class="text-xs text-red-700">Controlla i campi evidenziati prima di continuare.</span>
+            </div>
+
+            <form id="auth-form" class="flex flex-col gap-4" novalidate>
+              <div class="flex flex-col gap-1">
+                <label for="auth-email" class="text-xs font-semibold text-neutral-900">Email universitaria</label>
+                <input
+                  id="auth-email"
+                  type="email"
+                  placeholder="nome@universita.it"
+                  class="min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900"
+                />
+                <span id="auth-email-err" class="hidden text-xs text-red-700">Inserisci un indirizzo email valido</span>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="auth-password" class="text-xs font-semibold text-neutral-900">Password</label>
+                <input
+                  id="auth-password"
+                  type="password"
+                  value="password123"
+                  placeholder="••••••••"
+                  class="min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900"
+                />
+                <span id="auth-pass-err" class="hidden text-xs text-red-700">Inserisci una password di almeno 6 caratteri</span>
+              </div>
+
+              <button
+                type="submit"
+                id="btn-auth-submit"
+                class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+              >
+                Accedi
+              </button>
+            </form>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 h-px bg-neutral-300"></div>
+              <span class="text-xs text-neutral-500">oppure</span>
+              <div class="flex-1 h-px bg-neutral-300"></div>
+            </div>
+
+            <button
+              type="button"
+              id="btn-auth-google"
+              class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer"
+            >
+              Accedi con Google
+            </button>
+          </div>
+
+          <p class="text-11 text-neutral-500 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+
+        <!-- ==================== 4. PROFILE SETUP ==================== -->
+        <section id="screen-profile-setup" class="hidden flex-1 overflow-y-auto wireframe-scroll px-6 py-8 bg-white flex flex-col justify-between gap-6">
+          <div class="flex flex-col gap-5">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Setup profilo</span>
+              <h1 class="text-2xl font-bold text-neutral-900">Completa il tuo profilo</h1>
+              <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div id="setup-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex flex-col gap-0-5" role="alert">
+              <span class="text-xs font-bold uppercase tracking-wide text-red-700">Profilo incompleto</span>
+              <span class="text-xs text-red-700">Compila i campi obbligatori per proseguire.</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="setup-nickname" class="text-xs font-semibold text-neutral-900">Nickname</label>
+              <input
+                id="setup-nickname"
+                type="text"
+                placeholder="Es. Alex"
+                class="min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900"
+              />
+              <span id="setup-nickname-err" class="hidden text-xs text-red-700">Inserisci un nickname per continuare</span>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-semibold text-neutral-900">Scegli il campus</span>
+              <div id="setup-campus-list" class="flex flex-col gap-2 p-2 rounded-md border border-neutral-300"></div>
+              <span id="setup-campus-err" class="hidden text-xs text-red-700">Seleziona il tuo campus</span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="btn-setup-save"
+            class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+          >
+            Salva e continua
+          </button>
+        </section>
+
+        <!-- ==================== 5. HOME ==================== -->
+        <section id="screen-home" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 pt-6 pb-4 flex flex-col gap-4">
+            <div class="flex flex-col gap-0-5">
+              <h2 id="home-greeting" class="text-xl font-bold text-neutral-900">Ciao, Alex</h2>
+              <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <div class="border border-neutral-900 rounded-md p-4 bg-neutral-100 flex flex-col gap-3">
+              <div class="flex flex-col gap-1">
+                <h3 class="text-base font-semibold text-neutral-900">Come ti senti oggi?</h3>
+                <p id="home-cta-sub" class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <button
+                type="button"
+                id="btn-home-checkin"
+                class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+              >
+                Registra il tuo umore
+              </button>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-neutral-600">Riepilogo</h3>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1 items-center text-center">
+                  <span id="home-streak" class="text-lg font-bold text-neutral-900 tabular-nums">0g</span>
+                  <span class="text-11 text-neutral-600">Streak</span>
+                </div>
+                <div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1 items-center text-center">
+                  <span id="home-count" class="text-lg font-bold text-neutral-900 tabular-nums">0</span>
+                  <span class="text-11 text-neutral-600">Check-in</span>
+                </div>
+                <div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1 items-center text-center">
+                  <span id="home-avg" class="text-lg font-bold text-neutral-900 tabular-nums">-</span>
+                  <span class="text-11 text-neutral-600">Umore medio</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-neutral-300 rounded-md p-4 bg-white flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-semibold text-neutral-900">Andamento della settimana</h3>
+                <span class="text-11 text-neutral-500">1 – 10</span>
+              </div>
+              <div id="home-week-grid" class="grid grid-cols-7 gap-1 pt-1"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 6. CHECK-IN STEP 1: MOOD ==================== -->
+        <section id="screen-checkin-mood" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1 min-w-0">
+              <button type="button" id="btn-mood-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+                </svg>
+              </button>
+              <div class="flex flex-col min-w-0">
+                <h1 class="text-base font-semibold text-neutral-900 truncate">Scelta umore</h1>
+                <span class="text-11 text-neutral-500 leading-none truncate">Passo 1 di 3</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-4">
+              <div id="mood-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex flex-col gap-0-5" role="alert">
+                <span class="text-xs font-bold uppercase tracking-wide text-red-700">Non puoi ancora continuare</span>
+                <span class="text-xs text-red-700">Seleziona un umore per continuare</span>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <h2 class="text-lg font-bold text-neutral-900">Come ti senti adesso?</h2>
+                <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+
+              <div id="mood-grid-box" class="p-3 rounded-md border border-neutral-300 bg-white">
+                <div id="mood-grid" class="grid grid-cols-3 gap-2-5"></div>
+                <p id="mood-grid-err" class="hidden text-xs font-medium text-red-700 mt-3">Seleziona un umore per continuare</p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              id="btn-mood-continue"
+              class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+            >
+              Continua
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 7. CHECK-IN STEP 2: DETAIL ==================== -->
+        <section id="screen-checkin-detail" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1 min-w-0">
+              <button type="button" id="btn-detail-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+                </svg>
+              </button>
+              <div class="flex flex-col min-w-0">
+                <h1 class="text-base font-semibold text-neutral-900 truncate">Dettaglio check-in</h1>
+                <span class="text-11 text-neutral-500 leading-none truncate">Passo 2 di 3</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-4">
+              <div id="detail-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex flex-col gap-0-5" role="alert">
+                <span class="text-xs font-bold uppercase tracking-wide text-red-700">Check-in non salvato</span>
+                <span class="text-xs text-red-700">Compila il campo Intensità prima di salvare.</span>
+              </div>
+
+              <div class="border border-neutral-300 rounded-md p-3 bg-neutral-100 flex items-center justify-between">
+                <span class="text-xs text-neutral-600">Umore selezionato</span>
+                <span id="detail-selected-mood" class="text-sm font-bold text-neutral-900">-</span>
+              </div>
+
+              <div id="intensity-box" class="p-3 rounded-md border border-neutral-300 bg-white flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <label for="intensity-slider" class="text-sm font-semibold text-neutral-900">Intensità (1 – 5)</label>
+                  <span id="intensity-label" class="text-xs font-semibold text-neutral-900 tabular-nums">Non selezionata</span>
+                </div>
+                <input id="intensity-slider" type="range" min="1" max="5" step="1" value="3" class="w-full accent-neutral-900 cursor-pointer h-8" />
+                <div id="intensity-steps" class="grid grid-cols-5 gap-2"></div>
+                <div class="flex justify-between text-11 text-neutral-500">
+                  <span>1 · Lieve</span>
+                  <span>5 · Molto forte</span>
+                </div>
+                <span id="intensity-err" class="hidden text-xs font-medium text-red-700">Scegli un valore da 1 a 5</span>
+              </div>
+
+              <div class="flex flex-col gap-1-5">
+                <label for="checkin-zone" class="text-xs font-semibold text-neutral-900">Zona del campus</label>
+                <select id="checkin-zone" class="min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900"></select>
+              </div>
+
+              <div class="flex flex-col gap-1-5">
+                <label for="checkin-note" class="text-xs font-semibold text-neutral-900">Nota facoltativa</label>
+                <textarea id="checkin-note" rows="3" placeholder="Scrivi un pensiero veloce..." class="p-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900 resize-none"></textarea>
+              </div>
+
+              <div class="border border-neutral-300 rounded-md px-3 py-2 bg-white">
+                <label for="checkin-anon-toggle" class="flex items-center justify-between gap-3 min-h-44 py-1 cursor-pointer select-none">
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-neutral-900">Condividi in modo anonimo</span>
+                    <span class="text-xs text-neutral-500">Il tuo nickname non apparirà sulla mappa</span>
+                  </div>
+                  <div class="relative shrink-0">
+                    <input id="checkin-anon-toggle" type="checkbox" class="sr-only" />
+                    <div id="checkin-anon-track" class="w-12 h-7 rounded-full border flex items-center px-1 bg-neutral-900 border-neutral-900 justify-end">
+                      <div id="checkin-anon-knob" class="w-5 h-5 rounded-full border bg-white border-white"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              id="btn-detail-save"
+              class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer"
+            >
+              Salva check-in
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 8. CHECK-IN STEP 3: CONFIRM ==================== -->
+        <section id="screen-checkin-confirm" class="hidden flex-1 overflow-y-auto wireframe-scroll px-6 py-8 bg-white flex flex-col justify-between gap-6">
+          <div></div>
+          <div class="flex flex-col items-center text-center gap-5">
+            <div class="w-20 h-20 rounded-full border-2 border-neutral-900 flex items-center justify-center bg-neutral-100">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 13L9.5 17.5L19 7.5" stroke="#111111" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" />
+              </svg>
+            </div>
+            <div class="flex flex-col gap-1-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Passo 3 di 3</span>
+              <h1 class="text-2xl font-bold text-neutral-900">Check-in salvato!</h1>
+              <p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="w-full border border-neutral-300 rounded-md p-4 bg-neutral-100 flex flex-col gap-2 text-left">
+              <div class="flex justify-between text-xs">
+                <span class="text-neutral-600">Streak aggiornato</span>
+                <span id="confirm-streak" class="font-bold text-neutral-900 tabular-nums">1 giorno</span>
+              </div>
+              <div class="h-px bg-neutral-300"></div>
+              <div class="flex justify-between text-xs">
+                <span class="text-neutral-600">Umore registrato</span>
+                <span id="confirm-mood" class="font-semibold text-neutral-900">-</span>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="text-neutral-600">Zona</span>
+                <span id="confirm-zone" class="font-semibold text-neutral-900">-</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button type="button" id="btn-confirm-home" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">
+              Torna alla Home
+            </button>
+            <button type="button" id="btn-confirm-map" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">
+              Vedi la mappa del campus
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 9. MAPPA CAMPUS ==================== -->
+        <section id="screen-map" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center justify-between gap-2">
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Mappa campus</h1>
+            <button
+              type="button"
+              id="btn-map-offline"
+              class="min-h-44 px-2 text-11 text-neutral-400 cursor-pointer"
+              title="Simula stato offline"
+            >
+              Offline: OFF
+            </button>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col gap-4">
+            <div id="map-offline-view" class="hidden flex flex-col gap-4">
+              <div class="border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex items-center justify-between gap-3" role="alert">
+                <div class="flex flex-col gap-0-5">
+                  <span class="text-xs font-bold uppercase tracking-wide text-red-700">Sei offline</span>
+                  <span class="text-xs text-red-700">Impossibile caricare la mappa</span>
+                </div>
+                <button type="button" id="btn-map-retry-banner" class="min-h-44 px-3 py-2 text-xs font-medium rounded-md bg-white text-red-700 border border-red-600 cursor-pointer shrink-0">
+                  Riprova
+                </button>
+              </div>
+              <div class="border border-dashed border-red-400 rounded-md p-6 bg-neutral-50 flex flex-col items-center justify-center text-center gap-3 min-h-240">
+                <div class="w-12 h-12 rounded-full border border-dashed border-red-500"></div>
+                <p class="text-sm font-semibold text-neutral-900">Connessione assente</p>
+                <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <button type="button" id="btn-map-retry-box" class="min-h-44 px-3 py-2 text-xs font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 cursor-pointer">
+                  Riprova
+                </button>
+              </div>
+            </div>
+
+            <div id="map-online-view" class="flex flex-col gap-4">
+              <div class="grid grid-cols-2 border border-neutral-900 rounded-md overflow-hidden shrink-0">
+                <button type="button" id="btn-map-today" class="min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer">Oggi</button>
+                <button type="button" id="btn-map-week" class="min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer">Settimana</button>
+              </div>
+
+              <div class="border border-neutral-400 rounded-md p-3 bg-neutral-100 flex flex-col gap-2-5">
+                <div class="flex items-center justify-between text-11 text-neutral-600">
+                  <span class="font-medium">Schema zone campus</span>
+                  <span>Tocca una zona</span>
+                </div>
+                <div id="map-zones-grid" class="grid grid-cols-2 gap-2-5"></div>
+                <div class="pt-1 flex items-center justify-between gap-2">
+                  <span class="text-11 text-neutral-700">Umore basso</span>
+                  <div class="flex items-center gap-1" aria-hidden="true">
+                    <span class="w-5 h-3 border border-dashed border-neutral-600 bg-white inline-block"></span>
+                    <span class="w-5 h-3 border border-neutral-700 bg-neutral-200 inline-block"></span>
+                    <span class="w-5 h-3 border border-neutral-700 bg-neutral-300 inline-block"></span>
+                    <span class="w-5 h-3 border border-neutral-700 bg-neutral-500 inline-block"></span>
+                    <span class="w-5 h-3 border border-neutral-900 bg-neutral-800 inline-block"></span>
+                  </div>
+                  <span class="text-11 text-neutral-700">Umore alto</span>
+                </div>
+              </div>
+
+              <div class="border border-neutral-900 rounded-md p-4 bg-white flex flex-col gap-3">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="text-11 uppercase tracking-wider text-neutral-500 font-semibold">Zona selezionata</span>
+                    <h2 id="map-sel-name" class="text-base font-bold text-neutral-900">-</h2>
+                  </div>
+                  <div class="text-right">
+                    <span id="map-sel-avg" class="text-lg font-bold text-neutral-900 tabular-nums block leading-tight">-</span>
+                    <span id="map-sel-count" class="text-11 text-neutral-600 tabular-nums">0 check-in</span>
+                  </div>
+                </div>
+                <p class="text-xs text-neutral-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <button type="button" id="btn-map-zone-detail" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">
+                  Vedi dettaglio zona
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== 10. DETTAGLIO ZONA ==================== -->
+        <section id="screen-zone-detail" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center gap-1">
+            <button type="button" id="btn-zone-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+              </svg>
+            </button>
+            <div class="flex flex-col min-w-0">
+              <h1 id="zone-detail-title" class="text-base font-semibold text-neutral-900 truncate">Zona</h1>
+              <span class="text-11 text-neutral-500 leading-none truncate">Dettaglio zona</span>
+            </div>
+          </header>
+
+          <div id="zone-detail-body" class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col justify-between gap-4"></div>
+        </section>
+
+        <!-- ==================== 11. STATISTICHE ==================== -->
+        <section id="screen-stats" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center gap-1">
+            <button type="button" id="btn-stats-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+              </svg>
+            </button>
+            <div class="flex flex-col min-w-0">
+              <h1 class="text-base font-semibold text-neutral-900 truncate">Statistiche</h1>
+              <span class="text-11 text-neutral-500 leading-none truncate">Il tuo andamento</span>
+            </div>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-4">
+              <div class="grid grid-cols-2 border border-neutral-900 rounded-md overflow-hidden">
+                <button type="button" id="btn-stats-7" class="min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer">7 giorni</button>
+                <button type="button" id="btn-stats-30" class="min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer">30 giorni</button>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <h2 id="stats-chart-title" class="text-sm font-semibold text-neutral-900">Andamento umore (7 giorni)</h2>
+                <div id="stats-chart-container" class="border border-neutral-300 rounded-md p-3 bg-white"></div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1">
+                  <span class="text-11 text-neutral-600">Umore medio</span>
+                  <span id="stats-avg" class="text-xl font-bold text-neutral-900 tabular-nums">—</span>
+                </div>
+                <div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1">
+                  <span class="text-11 text-neutral-600">Giorno migliore</span>
+                  <span id="stats-best-date" class="text-sm font-bold text-neutral-900 tabular-nums">—</span>
+                  <span id="stats-best-sub" class="text-11 text-neutral-600"></span>
+                </div>
+              </div>
+
+              <div class="border border-neutral-300 rounded-md p-4 bg-neutral-100">
+                <p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+              </div>
+            </div>
+
+            <button type="button" id="btn-stats-history" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">
+              Vedi lo storico
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 12. STORICO CHECK-IN ==================== -->
+        <section id="screen-history" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center gap-1">
+            <button type="button" id="btn-history-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+              </svg>
+            </button>
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Storico check-in</h1>
+          </header>
+
+          <!-- Fixed filter bar with top padding -->
+          <div class="shrink-0 bg-white border-b border-neutral-200 px-4 pt-4 pb-3">
+            <div id="history-filters" class="flex items-center gap-2 overflow-x-auto"></div>
+          </div>
+
+          <div id="history-list" class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col gap-2"></div>
+        </section>
+
+        <!-- ==================== 13A. BACHECA ANONIMA ==================== -->
+        <section id="screen-board" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center justify-between gap-2">
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Bacheca anonima</h1>
+            <button type="button" id="btn-board-new" class="min-h-44 px-3 py-2 text-xs font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer shrink-0">
+              Nuovo post
+            </button>
+          </header>
+
+          <div class="shrink-0 bg-white border-b border-neutral-200 px-4 pt-3 pb-3">
+            <div id="board-filters" class="flex items-center gap-2 overflow-x-auto"></div>
+          </div>
+
+          <div id="board-feed" class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col gap-3"></div>
+        </section>
+
+        <!-- ==================== 13B. DETTAGLIO POST ==================== -->
+        <section id="screen-board-detail" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center gap-1">
+            <button type="button" id="btn-post-detail-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+              </svg>
+            </button>
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Dettaglio post</h1>
+          </header>
+
+          <div id="post-detail-body" class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col gap-4"></div>
+
+          <form id="reply-form" class="shrink-0 border-t border-neutral-300 p-3 bg-white flex flex-col gap-2">
+            <div id="reply-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-2-5 flex flex-col gap-0-5" role="alert">
+              <span class="text-xs font-bold uppercase tracking-wide text-red-700">Risposta vuota</span>
+              <span class="text-xs text-red-700">Scrivi un testo prima di inviare.</span>
+            </div>
+            <div class="flex gap-2">
+              <input id="reply-input" type="text" placeholder="Scrivi una risposta..." aria-label="Scrivi una risposta" class="flex-1 min-h-44 px-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900" />
+              <button type="submit" class="min-h-44 px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">
+                Invia
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ==================== 13C. NUOVO POST ==================== -->
+        <section id="screen-board-new" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center gap-1">
+            <button type="button" id="btn-newpost-back" aria-label="Indietro" class="min-w-44 min-h-44 -ml-2 flex items-center justify-center text-neutral-900 hover-bg-100 rounded-md cursor-pointer">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M12.5 4.5L7 10L12.5 15.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+              </svg>
+            </button>
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Nuovo post</h1>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-4">
+              <div id="newpost-banner" class="hidden border border-red-600 bg-red-50 text-red-700 rounded-md p-3 flex flex-col gap-0-5" role="alert">
+                <span class="text-xs font-bold uppercase tracking-wide text-red-700">Impossibile pubblicare il post</span>
+                <span class="text-xs text-red-700">Correggi i campi evidenziati qui sotto.</span>
+              </div>
+
+              <div class="flex flex-col gap-1-5">
+                <div class="flex items-center justify-between">
+                  <label for="newpost-text" class="text-xs font-semibold text-neutral-900">Testo del post</label>
+                  <span id="newpost-char-count" class="text-11 text-neutral-500 tabular-nums">0 / 10 min</span>
+                </div>
+                <textarea id="newpost-text" rows="4" placeholder="Condividi un pensiero sul campus..." class="p-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900 resize-none"></textarea>
+                <span id="newpost-text-err" class="hidden text-xs font-medium text-red-700">Il testo deve contenere almeno 10 caratteri</span>
+              </div>
+
+              <div class="flex flex-col gap-1-5">
+                <span class="text-xs font-semibold text-neutral-900">Scegli la zona</span>
+                <div id="newpost-zone-chips" class="p-2-5 rounded-md border border-neutral-300 bg-white flex flex-wrap gap-2"></div>
+                <span id="newpost-zone-err" class="hidden text-xs font-medium text-red-700">Seleziona una zona del campus</span>
+              </div>
+
+              <div class="border border-neutral-300 rounded-md px-3 py-2 bg-white">
+                <label for="newpost-anon-toggle" class="flex items-center justify-between gap-3 min-h-44 py-1 cursor-pointer select-none">
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-neutral-900">Pubblica in modo anonimo</span>
+                    <span class="text-xs text-neutral-500">Il tuo nickname verrà nascosto</span>
+                  </div>
+                  <div class="relative shrink-0">
+                    <input id="newpost-anon-toggle" type="checkbox" class="sr-only" />
+                    <div id="newpost-anon-track" class="w-12 h-7 rounded-full border flex items-center px-1 bg-neutral-900 border-neutral-900 justify-end">
+                      <div id="newpost-anon-knob" class="w-5 h-5 rounded-full border bg-white border-white"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <button type="button" id="btn-newpost-publish" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">
+              Pubblica
+            </button>
+          </div>
+        </section>
+
+        <!-- ==================== 14. PROFILO ==================== -->
+        <section id="screen-profile" class="hidden flex-1 flex flex-col min-h-0 bg-white">
+          <header class="shrink-0 h-14 px-4 border-b border-neutral-300 bg-white flex items-center justify-between gap-2">
+            <h1 class="text-base font-semibold text-neutral-900 truncate">Profilo</h1>
+            <span id="profile-saved-notice" class="hidden text-11 font-medium text-neutral-600">Salvato</span>
+          </header>
+
+          <div class="flex-1 overflow-y-auto wireframe-scroll px-4 py-4 flex flex-col gap-5">
+            <div class="border border-neutral-300 rounded-md p-4 bg-neutral-100 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full border-2 border-neutral-900 bg-white flex items-center justify-center shrink-0">
+                <span id="prof-initials" class="text-sm font-bold text-neutral-900">AL</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span id="prof-display-name" class="text-base font-bold text-neutral-900 truncate">Alex</span>
+                <span id="prof-display-campus" class="text-xs text-neutral-600 truncate">Campus Città Studi</span>
+                <span id="prof-display-email" class="text-11 text-neutral-500 truncate">studente@universita.it</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-600">Impostazioni</h2>
+              <div class="border border-neutral-300 rounded-md p-4 bg-white flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                  <label for="prof-nickname" class="text-xs font-semibold text-neutral-900">Nickname</label>
+                  <input id="prof-nickname" type="text" class="min-h-44 px-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900" />
+                </div>
+                <div class="flex flex-col gap-1">
+                  <label for="prof-campus" class="text-xs font-semibold text-neutral-900">Campus</label>
+                  <select id="prof-campus" class="min-h-44 px-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900"></select>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="flex flex-col gap-1">
+                    <label for="prof-theme" class="text-xs font-semibold text-neutral-900">Tema</label>
+                    <select id="prof-theme" disabled class="min-h-44 px-2-5 text-xs rounded-md border border-neutral-300 bg-neutral-100 text-neutral-700">
+                      <option value="Chiaro (Wireframe)">Chiaro (Wireframe)</option>
+                    </select>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <label for="prof-lang" class="text-xs font-semibold text-neutral-900">Lingua</label>
+                    <select id="prof-lang" class="min-h-44 px-2-5 text-xs rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900">
+                      <option value="Italiano">Italiano</option>
+                      <option value="English">English</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-600">Privacy e notifiche</h2>
+              <div class="border border-neutral-300 rounded-md p-4 bg-white flex flex-col gap-2">
+                <label for="prof-anon-toggle" class="flex items-center justify-between gap-3 min-h-44 py-1 cursor-pointer select-none">
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-neutral-900">Check-in anonimi</span>
+                    <span class="text-xs text-neutral-500">Imposta l'anonimato come predefinito</span>
+                  </div>
+                  <div class="relative shrink-0">
+                    <input id="prof-anon-toggle" type="checkbox" class="sr-only" />
+                    <div id="prof-anon-track" class="w-12 h-7 rounded-full border flex items-center px-1">
+                      <div id="prof-anon-knob" class="w-5 h-5 rounded-full border"></div>
+                    </div>
+                  </div>
+                </label>
+
+                <div class="h-px bg-neutral-200"></div>
+
+                <label for="prof-map-toggle" class="flex items-center justify-between gap-3 min-h-44 py-1 cursor-pointer select-none">
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-neutral-900">Mostra il mio umore sulla mappa</span>
+                    <span class="text-xs text-neutral-500">Contribuisci alle medie delle zone</span>
+                  </div>
+                  <div class="relative shrink-0">
+                    <input id="prof-map-toggle" type="checkbox" class="sr-only" />
+                    <div id="prof-map-track" class="w-12 h-7 rounded-full border flex items-center px-1">
+                      <div id="prof-map-knob" class="w-5 h-5 rounded-full border"></div>
+                    </div>
+                  </div>
+                </label>
+
+                <div class="h-px bg-neutral-200"></div>
+
+                <label for="prof-rem-toggle" class="flex items-center justify-between gap-3 min-h-44 py-1 cursor-pointer select-none">
+                  <span class="text-sm font-medium text-neutral-900">Promemoria giornaliero</span>
+                  <div class="relative shrink-0">
+                    <input id="prof-rem-toggle" type="checkbox" class="sr-only" />
+                    <div id="prof-rem-track" class="w-12 h-7 rounded-full border flex items-center px-1">
+                      <div id="prof-rem-knob" class="w-5 h-5 rounded-full border"></div>
+                    </div>
+                  </div>
+                </label>
+
+                <div id="prof-rem-time-row" class="flex items-center justify-between pt-2 border-t border-neutral-200">
+                  <label for="prof-rem-time" class="text-xs font-medium text-neutral-700">Orario promemoria</label>
+                  <input id="prof-rem-time" type="time" class="min-h-44 px-2-5 text-sm rounded border border-neutral-400 bg-white text-neutral-900 tabular-nums" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 pb-2">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-600">Controlli wireframe</h2>
+              <button type="button" id="btn-prof-clear" class="min-h-44 w-full px-3 py-2 text-xs font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">
+                Svuota storico check-in (test stato vuoto)
+              </button>
+              <button type="button" id="btn-prof-reset" class="min-h-44 w-full px-3 py-2 text-xs font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">
+                Ripristina dati mock iniziali
+              </button>
+              <button type="button" id="btn-prof-logout" class="min-h-44 w-full px-3 py-2 text-xs font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">
+                Esci e ripeti onboarding
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== BOTTOM TAB BAR ==================== -->
+        <nav id="tab-bar" aria-label="Navigazione principale" class="hidden shrink-0 h-16 border-t border-neutral-300 bg-white grid grid-cols-4">
+          <button type="button" data-tab="home" class="tab-btn min-h-44 flex flex-col items-center justify-center gap-1 cursor-pointer hover-bg-50">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <rect x="3" y="3" width="14" height="14" stroke-width="1.5" />
+            </svg>
+            <span class="tab-label text-11 leading-none">Home</span>
+          </button>
+          <button type="button" data-tab="map" class="tab-btn min-h-44 flex flex-col items-center justify-center gap-1 cursor-pointer hover-bg-50">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="10" cy="10" r="7" stroke-width="1.5" />
+            </svg>
+            <span class="tab-label text-11 leading-none">Mappa</span>
+          </button>
+          <button type="button" data-tab="board" class="tab-btn min-h-44 flex flex-col items-center justify-center gap-1 cursor-pointer hover-bg-50">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <rect x="2.5" y="4" width="15" height="12" rx="3.5" stroke-width="1.5" />
+            </svg>
+            <span class="tab-label text-11 leading-none">Bacheca</span>
+          </button>
+          <button type="button" data-tab="profile" class="tab-btn min-h-44 flex flex-col items-center justify-center gap-1 cursor-pointer hover-bg-50">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <polygon points="10,3 17.5,16.5 2.5,16.5" stroke-width="1.5" />
+            </svg>
+            <span class="tab-label text-11 leading-none">Profilo</span>
+          </button>
+        </nav>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var STORAGE_KEY = 'moodmap_wireframe_state_v1';
+
+        var MOODS = [
+          { label: 'Felice', baseScore: 5.0 },
+          { label: 'Calmo', baseScore: 4.2 },
+          { label: 'Carico', baseScore: 4.6 },
+          { label: 'Stanco', baseScore: 2.4 },
+          { label: 'Ansioso', baseScore: 2.0 },
+          { label: 'Triste', baseScore: 1.6 },
+          { label: 'Arrabbiato', baseScore: 1.4 },
+          { label: 'Annoiato', baseScore: 2.6 },
+          { label: 'Stressato', baseScore: 1.8 }
+        ];
+
+        var CAMPUSES = [
+          'Campus Città Studi',
+          'Campus Leonardo',
+          'Campus Bovisa',
+          'Campus Bicocca',
+          'Campus Polo Centrale'
+        ];
+
+        var ONBOARDING_SLIDES = [
+          {
+            title: 'Registra il tuo umore ogni giorno',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          },
+          {
+            title: 'Osserva come sta il campus',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+          },
+          {
+            title: 'Condividi in modo anonimo',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.'
+          }
+        ];
+
+        var SCREEN_IDS = [
+          'screen-splash',
+          'screen-onboarding',
+          'screen-auth',
+          'screen-profile-setup',
+          'screen-home',
+          'screen-checkin-mood',
+          'screen-checkin-detail',
+          'screen-checkin-confirm',
+          'screen-map',
+          'screen-zone-detail',
+          'screen-stats',
+          'screen-history',
+          'screen-board',
+          'screen-board-detail',
+          'screen-board-new',
+          'screen-profile'
+        ];
+
+        var TOP_LEVEL_SCREENS = ['screen-home', 'screen-map', 'screen-board', 'screen-profile'];
+
+        function formatDateISO(date) {
+          var y = date.getFullYear();
+          var m = String(date.getMonth() + 1).padStart(2, '0');
+          var d = String(date.getDate()).padStart(2, '0');
+          return y + '-' + m + '-' + d;
+        }
+
+        function getRelativeDateISO(daysAgo) {
+          var d = new Date();
+          d.setDate(d.getDate() - daysAgo);
+          return formatDateISO(d);
+        }
+
+        function formatDateItalian(isoDate) {
+          var parts = isoDate.split('-');
+          if (parts.length !== 3) return isoDate;
+          return parts[2] + '/' + parts[1] + '/' + parts[0];
+        }
+
+        function computeMoodScore(moodLabel, intensity) {
+          var found = null;
+          for (var i = 0; i < MOODS.length; i++) {
+            if (MOODS[i].label === moodLabel) { found = MOODS[i]; break; }
+          }
+          var base = found ? found.baseScore : 3.0;
+          var delta = base >= 3.5 ? (intensity - 3) * 0.15 : -(intensity - 3) * 0.15;
+          return Math.max(1, Math.min(5, Number((base + delta).toFixed(1))));
+        }
+
+        function createMockCheckIns() {
+          var pattern = [
+            { daysAgo: 1, mood: 'Calmo', intensity: 4, zoneId: 'giardino', time: '16:20', note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+            { daysAgo: 2, mood: 'Felice', intensity: 5, zoneId: 'cortile', time: '13:10', note: 'Lorem ipsum dolor sit amet.' },
+            { daysAgo: 3, mood: 'Stanco', intensity: 3, zoneId: 'aula-studio', time: '18:45', note: '' },
+            { daysAgo: 4, mood: 'Carico', intensity: 4, zoneId: 'palestra', time: '17:00', note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+            { daysAgo: 5, mood: 'Stressato', intensity: 4, zoneId: 'aula-studio', time: '15:30', note: 'Lorem ipsum dolor sit amet.' },
+            { daysAgo: 6, mood: 'Calmo', intensity: 3, zoneId: 'mensa', time: '12:40', note: '' },
+            { daysAgo: 7, mood: 'Felice', intensity: 4, zoneId: 'giardino', time: '11:15', note: 'Lorem ipsum dolor sit amet.' },
+            { daysAgo: 8, mood: 'Annoiato', intensity: 2, zoneId: 'mensa', time: '14:00', note: '' },
+            { daysAgo: 9, mood: 'Stanco', intensity: 4, zoneId: 'aula-studio', time: '19:05', note: 'Lorem ipsum dolor sit amet.' },
+            { daysAgo: 10, mood: 'Ansioso', intensity: 3, zoneId: 'cortile', time: '09:30', note: '' },
+            { daysAgo: 11, mood: 'Calmo', intensity: 4, zoneId: 'giardino', time: '15:10', note: 'Lorem ipsum dolor sit amet.' },
+            { daysAgo: 12, mood: 'Carico', intensity: 5, zoneId: 'palestra', time: '18:00', note: '' },
+            { daysAgo: 13, mood: 'Triste', intensity: 2, zoneId: 'mensa', time: '13:20', note: '' },
+            { daysAgo: 14, mood: 'Felice', intensity: 4, zoneId: 'cortile', time: '10:45', note: 'Lorem ipsum dolor sit amet.' }
+          ];
+          return pattern.map(function (item, idx) {
+            return {
+              id: 'mock-ci-' + (idx + 1),
+              date: getRelativeDateISO(item.daysAgo),
+              time: item.time,
+              mood: item.mood,
+              intensity: item.intensity,
+              moodScore: computeMoodScore(item.mood, item.intensity),
+              note: item.note,
+              zoneId: item.zoneId,
+              anonymous: true
+            };
+          });
+        }
+
+        function createMockZones() {
+          return [
+            { id: 'biblioteca', name: 'Biblioteca', todayAvg: 0, todayCount: 0, weekAvg: 0, weekCount: 0, hourly: [] },
+            {
+              id: 'mensa', name: 'Mensa', todayAvg: 3.6, todayCount: 18, weekAvg: 3.5, weekCount: 94,
+              hourly: [
+                { hour: '09', value: 3.2, count: 2 }, { hour: '11', value: 3.5, count: 4 },
+                { hour: '13', value: 4.1, count: 8 }, { hour: '15', value: 3.4, count: 2 },
+                { hour: '17', value: 3.0, count: 1 }, { hour: '19', value: 3.3, count: 1 }
+              ]
+            },
+            {
+              id: 'aula-studio', name: 'Aula studio', todayAvg: 2.3, todayCount: 26, weekAvg: 2.5, weekCount: 142,
+              hourly: [
+                { hour: '09', value: 3.1, count: 4 }, { hour: '11', value: 2.6, count: 6 },
+                { hour: '13', value: 2.2, count: 4 }, { hour: '15', value: 2.0, count: 7 },
+                { hour: '17', value: 1.9, count: 3 }, { hour: '19', value: 2.4, count: 2 }
+              ]
+            },
+            {
+              id: 'giardino', name: 'Giardino', todayAvg: 4.5, todayCount: 15, weekAvg: 4.3, weekCount: 78,
+              hourly: [
+                { hour: '09', value: 4.0, count: 2 }, { hour: '11', value: 4.4, count: 3 },
+                { hour: '13', value: 4.8, count: 5 }, { hour: '15', value: 4.6, count: 3 },
+                { hour: '17', value: 4.2, count: 2 }, { hour: '19', value: 3.9, count: 0 }
+              ]
+            },
+            {
+              id: 'palestra', name: 'Palestra', todayAvg: 4.2, todayCount: 12, weekAvg: 4.1, weekCount: 64,
+              hourly: [
+                { hour: '09', value: 4.0, count: 2 }, { hour: '11', value: 3.9, count: 1 },
+                { hour: '13', value: 4.1, count: 2 }, { hour: '15', value: 4.2, count: 2 },
+                { hour: '17', value: 4.6, count: 3 }, { hour: '19', value: 4.4, count: 2 }
+              ]
+            },
+            {
+              id: 'cortile', name: 'Cortile', todayAvg: 3.8, todayCount: 21, weekAvg: 3.9, weekCount: 110,
+              hourly: [
+                { hour: '09', value: 3.6, count: 3 }, { hour: '11', value: 4.0, count: 5 },
+                { hour: '13', value: 4.2, count: 6 }, { hour: '15', value: 3.7, count: 4 },
+                { hour: '17', value: 3.5, count: 2 }, { hour: '19', value: 3.4, count: 1 }
+              ]
+            }
+          ];
+        }
+
+        function createMockPosts() {
+          return [
+            {
+              id: 'post-1', author: 'Anonimo', anonymous: true, zoneId: 'aula-studio',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
+              timestamp: '20 min fa', likes: 14, likedByMe: false,
+              replies: [
+                { id: 'rep-1', author: 'Anonimo', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', timestamp: '12 min fa' },
+                { id: 'rep-2', author: 'Anonimo', text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.', timestamp: '5 min fa' }
+              ]
+            },
+            {
+              id: 'post-2', author: 'Anonimo', anonymous: true, zoneId: 'mensa',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.',
+              timestamp: '1 ora fa', likes: 9, likedByMe: true,
+              replies: [
+                { id: 'rep-3', author: 'Anonimo', text: 'Duis aute irure dolor in reprehenderit in voluptate velit.', timestamp: '45 min fa' }
+              ]
+            },
+            {
+              id: 'post-3', author: 'Anonimo', anonymous: true, zoneId: 'giardino',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident.',
+              timestamp: '2 ore fa', likes: 22, likedByMe: false,
+              replies: [
+                { id: 'rep-4', author: 'Anonimo', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', timestamp: '1 ora fa' }
+              ]
+            },
+            {
+              id: 'post-4', author: 'Anonimo', anonymous: true, zoneId: 'cortile',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sunt in culpa qui officia deserunt.',
+              timestamp: '3 ore fa', likes: 6, likedByMe: false, replies: []
+            },
+            {
+              id: 'post-5', author: 'Anonimo', anonymous: true, zoneId: 'aula-studio',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas.',
+              timestamp: '5 ore fa', likes: 11, likedByMe: false,
+              replies: [
+                { id: 'rep-5', author: 'Anonimo', text: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.', timestamp: '4 ore fa' }
+              ]
+            },
+            {
+              id: 'post-6', author: 'Anonimo', anonymous: true, zoneId: 'palestra',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis autem vel eum iure reprehenderit.',
+              timestamp: 'Ieri', likes: 8, likedByMe: false, replies: []
+            }
+          ];
+        }
+
+        function createInitialState() {
+          return {
+            onboarded: false,
+            authenticated: false,
+            profileCompleted: false,
+            settings: {
+              nickname: 'Alex',
+              campus: 'Campus Città Studi',
+              email: 'studente@universita.it',
+              theme: 'Chiaro (Wireframe)',
+              language: 'Italiano',
+              defaultAnonymous: true,
+              showMoodOnMap: true,
+              dailyReminder: true,
+              reminderTime: '20:00'
+            },
+            checkIns: createMockCheckIns(),
+            zones: createMockZones(),
+            posts: createMockPosts()
+          };
+        }
+
+        function loadState() {
+          try {
+            var raw = window.localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+              var parsed = JSON.parse(raw);
+              if (parsed && Array.isArray(parsed.checkIns) && Array.isArray(parsed.zones)) {
+                return parsed;
+              }
+            }
+          } catch (e) {}
+          return createInitialState();
+        }
+
+        var state = loadState();
+
+        function saveState() {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          } catch (e) {}
+        }
+
+        // Runtime UI context
+        var currentScreen = 'screen-splash';
+        var onboardingStep = 0;
+        var authMode = 'login';
+        var setupCampus = state.settings.campus || CAMPUSES[0];
+
+        var checkInOrigin = 'screen-home';
+        var historyOrigin = 'screen-stats';
+        var draftMood = null;
+        var draftIntensity = null;
+        var draftZoneId = 'mensa';
+        var draftAnonymous = state.settings.defaultAnonymous;
+        var lastSavedCheckIn = null;
+
+        var selectedZoneId = 'mensa';
+        var mapPeriod = 'today';
+        var mapOffline = false;
+        var statsRange = 7;
+        var historyFilter = 'Tutti';
+        var boardFilter = 'all';
+        var selectedPostId = 'post-1';
+        var newPostZoneId = null;
+
+        function $(id) { return document.getElementById(id); }
+
+        function getZoneById(id) {
+          for (var i = 0; i < state.zones.length; i++) {
+            if (state.zones[i].id === id) return state.zones[i];
+          }
+          return state.zones[0];
+        }
+
+        function getZoneName(id) {
+          var z = getZoneById(id);
+          return z ? z.name : id;
+        }
+
+        function calculateStreak() {
+          if (state.checkIns.length === 0) return 0;
+          var set = {};
+          state.checkIns.forEach(function (c) { set[c.date] = true; });
+          var today = getRelativeDateISO(0);
+          var yesterday = getRelativeDateISO(1);
+          var offset = set[today] ? 0 : (set[yesterday] ? 1 : -1);
+          if (offset === -1) return 0;
+          var streak = 0;
+          while (set[getRelativeDateISO(offset)]) {
+            streak += 1;
+            offset += 1;
+          }
+          return streak;
+        }
+
+        function calculateAvgMood(list) {
+          if (!list || list.length === 0) return 0;
+          var sum = list.reduce(function (acc, item) { return acc + item.moodScore; }, 0);
+          return Number((sum / list.length).toFixed(1));
+        }
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+        }
+
+        function syncToggleVisual(checkboxId, trackId, knobId, checked) {
+          var cb = $(checkboxId);
+          var track = $(trackId);
+          var knob = $(knobId);
+          if (!cb || !track || !knob) return;
+          cb.checked = !!checked;
+          if (checked) {
+            track.className = 'w-12 h-7 rounded-full border flex items-center px-1 bg-neutral-900 border-neutral-900 justify-end';
+            knob.className = 'w-5 h-5 rounded-full border bg-white border-white';
+          } else {
+            track.className = 'w-12 h-7 rounded-full border flex items-center px-1 bg-white border-neutral-500 justify-start';
+            knob.className = 'w-5 h-5 rounded-full border bg-neutral-400 border-neutral-600';
+          }
+        }
+
+        // ==================== SHOW SCREEN VIA ID ====================
+        function showScreen(screenId) {
+          currentScreen = screenId;
+          SCREEN_IDS.forEach(function (id) {
+            var el = $(id);
+            if (!el) return;
+            if (id === screenId) {
+              el.classList.remove('hidden');
+            } else {
+              el.classList.add('hidden');
+            }
+          });
+
+          // Tab bar visibility & active geometric shape
+          var tabBar = $('tab-bar');
+          var isTopLevel = TOP_LEVEL_SCREENS.indexOf(screenId) !== -1;
+          if (isTopLevel) {
+            tabBar.classList.remove('hidden');
+          } else {
+            tabBar.classList.add('hidden');
+          }
+
+          var activeTab = 'home';
+          if (screenId === 'screen-map' || screenId === 'screen-zone-detail') activeTab = 'map';
+          else if (screenId === 'screen-board' || screenId === 'screen-board-detail' || screenId === 'screen-board-new') activeTab = 'board';
+          else if (screenId === 'screen-profile') activeTab = 'profile';
+
+          var tabButtons = tabBar.querySelectorAll('.tab-btn');
+          tabButtons.forEach(function (btn) {
+            var tab = btn.getAttribute('data-tab');
+            var active = tab === activeTab;
+            var shape = btn.querySelector('svg rect, svg circle, svg polygon');
+            var label = btn.querySelector('.tab-label');
+            if (active) {
+              btn.setAttribute('aria-current', 'page');
+              if (shape) {
+                shape.setAttribute('fill', '#171717');
+                shape.setAttribute('stroke', '#171717');
+              }
+              if (label) {
+                label.className = 'tab-label text-11 leading-none font-semibold text-neutral-900';
+              }
+            } else {
+              btn.removeAttribute('aria-current');
+              if (shape) {
+                shape.setAttribute('fill', 'none');
+                shape.setAttribute('stroke', '#525252');
+              }
+              if (label) {
+                label.className = 'tab-label text-11 leading-none font-normal text-neutral-600';
+              }
+            }
+          });
+
+          // Render target screen
+          if (screenId === 'screen-onboarding') renderOnboarding();
+          else if (screenId === 'screen-auth') renderAuth();
+          else if (screenId === 'screen-profile-setup') renderProfileSetup();
+          else if (screenId === 'screen-home') renderHome();
+          else if (screenId === 'screen-checkin-mood') renderCheckInMood();
+          else if (screenId === 'screen-checkin-detail') renderCheckInDetail();
+          else if (screenId === 'screen-checkin-confirm') renderCheckInConfirm();
+          else if (screenId === 'screen-map') renderMap();
+          else if (screenId === 'screen-zone-detail') renderZoneDetail();
+          else if (screenId === 'screen-stats') renderStats();
+          else if (screenId === 'screen-history') renderHistory();
+          else if (screenId === 'screen-board') renderBoard();
+          else if (screenId === 'screen-board-detail') renderPostDetail();
+          else if (screenId === 'screen-board-new') renderNewPost();
+          else if (screenId === 'screen-profile') renderProfile();
+        }
+
+        // ==================== RENDERERS ====================
+        function renderOnboarding() {
+          var slide = ONBOARDING_SLIDES[onboardingStep];
+          $('onboarding-title').textContent = slide.title;
+          $('onboarding-text').textContent = slide.text;
+
+          var gfx = $('onboarding-graphic');
+          if (onboardingStep === 0) {
+            gfx.innerHTML =
+              '<div class="flex items-center gap-3">' +
+              '<div class="w-10 h-10 rounded-full border border-neutral-900 bg-white"></div>' +
+              '<div class="w-12 h-12 rounded-full border-2 border-neutral-900 bg-neutral-300"></div>' +
+              '<div class="w-10 h-10 rounded-full border border-neutral-900 bg-white"></div>' +
+              '</div>';
+          } else if (onboardingStep === 1) {
+            gfx.innerHTML =
+              '<div class="grid grid-cols-2 gap-2 p-4 w-40">' +
+              '<div class="h-10 border border-neutral-900 bg-neutral-200 rounded"></div>' +
+              '<div class="h-10 border border-neutral-900 bg-neutral-400 rounded"></div>' +
+              '<div class="h-10 border border-neutral-900 bg-neutral-600 rounded"></div>' +
+              '<div class="h-10 border border-neutral-900 bg-white rounded"></div>' +
+              '</div>';
+          } else {
+            gfx.innerHTML =
+              '<div class="flex flex-col gap-2 w-40">' +
+              '<div class="h-8 border border-neutral-900 bg-white rounded px-2 flex items-center"><div class="w-20 h-2 bg-neutral-400"></div></div>' +
+              '<div class="h-8 border border-neutral-900 bg-white rounded px-2 flex items-center"><div class="w-28 h-2 bg-neutral-300"></div></div>' +
+              '</div>';
+          }
+
+          var dotsHtml = '';
+          for (var i = 0; i < ONBOARDING_SLIDES.length; i++) {
+            dotsHtml += '<div class="h-2 rounded-full border border-neutral-900 ' +
+              (i === onboardingStep ? 'w-6 bg-neutral-900' : 'w-2 bg-white') + '"></div>';
+          }
+          $('onboarding-dots').innerHTML = dotsHtml;
+          $('btn-onboarding-next').textContent = onboardingStep === ONBOARDING_SLIDES.length - 1 ? 'Inizia' : 'Avanti';
+        }
+
+        function renderAuth() {
+          $('auth-email').value = state.settings.email || '';
+          $('auth-banner').classList.add('hidden');
+          $('auth-email-err').classList.add('hidden');
+          $('auth-pass-err').classList.add('hidden');
+          $('auth-email').className = 'min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900';
+          $('auth-password').className = 'min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900';
+
+          if (authMode === 'login') {
+            $('auth-heading').textContent = 'Accedi al tuo account';
+            $('btn-auth-submit').textContent = 'Accedi';
+            $('tab-auth-login').className = 'min-h-44 text-sm font-medium bg-neutral-900 text-white cursor-pointer';
+            $('tab-auth-register').className = 'min-h-44 text-sm font-medium bg-white text-neutral-900 cursor-pointer';
+          } else {
+            $('auth-heading').textContent = 'Crea un account';
+            $('btn-auth-submit').textContent = 'Registrati';
+            $('tab-auth-login').className = 'min-h-44 text-sm font-medium bg-white text-neutral-900 cursor-pointer';
+            $('tab-auth-register').className = 'min-h-44 text-sm font-medium bg-neutral-900 text-white cursor-pointer';
+          }
+        }
+
+        function renderProfileSetup() {
+          $('setup-nickname').value = state.settings.nickname || '';
+          $('setup-banner').classList.add('hidden');
+          $('setup-nickname-err').classList.add('hidden');
+          $('setup-campus-err').classList.add('hidden');
+          $('setup-nickname').className = 'min-h-44 px-3 py-2 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900';
+
+          var listEl = $('setup-campus-list');
+          listEl.className = 'flex flex-col gap-2 p-2 rounded-md border border-neutral-300';
+          listEl.innerHTML = CAMPUSES.map(function (c) {
+            var sel = setupCampus === c;
+            return (
+              '<button type="button" data-campus="' + escapeHtml(c) + '" class="setup-campus-btn min-h-44 px-3 py-2 rounded border text-left text-sm flex items-center justify-between cursor-pointer ' +
+              (sel ? 'border-neutral-900 bg-neutral-100 font-semibold text-neutral-900' : 'border-neutral-300 bg-white text-neutral-800 hover-border-900') + '">' +
+              '<span>' + escapeHtml(c) + '</span>' +
+              '<span class="w-4 h-4 rounded-full border border-neutral-900 flex items-center justify-center">' +
+              (sel ? '<span class="w-2 h-2 rounded-full bg-neutral-900"></span>' : '') +
+              '</span></button>'
+            );
+          }).join('');
+
+          listEl.querySelectorAll('.setup-campus-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              setupCampus = btn.getAttribute('data-campus');
+              renderProfileSetup();
+            });
+          });
+        }
+
+        function getCurrentWeekDates() {
+          var letters = ['L', 'M', 'M', 'G', 'V', 'S', 'D'];
+          var now = new Date();
+          var day = now.getDay();
+          var diffToMonday = day === 0 ? -6 : 1 - day;
+          var monday = new Date(now);
+          monday.setDate(now.getDate() + diffToMonday);
+          return letters.map(function (letter, idx) {
+            var d = new Date(monday);
+            d.setDate(monday.getDate() + idx);
+            return { letter: letter, iso: formatDateISO(d) };
+          });
+        }
+
+        function renderHome() {
+          $('home-greeting').textContent = 'Ciao, ' + (state.settings.nickname || 'Studente');
+          var todayISO = formatDateISO(new Date());
+          var hasToday = state.checkIns.some(function (c) { return c.date === todayISO; });
+          $('home-cta-sub').textContent = hasToday
+            ? 'Hai già registrato un check-in oggi. Puoi aggiungerne un altro.'
+            : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+          var streak = calculateStreak();
+          var avg = calculateAvgMood(state.checkIns);
+          $('home-streak').textContent = streak + 'g';
+          $('home-count').textContent = String(state.checkIns.length);
+          $('home-avg').textContent = avg > 0 ? avg.toFixed(1) : '-';
+
+          var weekDates = getCurrentWeekDates();
+          var gridHtml = weekDates.map(function (day) {
+            var dayItems = state.checkIns.filter(function (c) { return c.date === day.iso; });
+            var latest = dayItems[0];
+            var isToday = day.iso === todayISO;
+            var score10 = latest ? Math.max(1, Math.min(10, Math.round(latest.moodScore * 2))) : null;
+
+            var circleCls = 'bg-white border-neutral-400 text-neutral-400';
+            if (score10 !== null) {
+              circleCls = 'lum-' + score10;
+            } else if (isToday) {
+              circleCls = 'bg-white border-neutral-900 border-dashed text-neutral-900';
+            }
+
+            var labelCls = isToday ? 'font-bold text-neutral-900 underline' : 'text-neutral-600';
+
+            return (
+              '<div class="flex flex-col items-center gap-1-5">' +
+              '<div class="w-9 h-9 rounded-full border flex items-center justify-center text-11 font-semibold tabular-nums ' + circleCls + '">' +
+              (score10 !== null ? score10 : '') +
+              '</div>' +
+              '<span class="text-11 ' + labelCls + '">' + day.letter + '</span>' +
+              '</div>'
+            );
+          }).join('');
+          $('home-week-grid').innerHTML = gridHtml;
+        }
+
+        function renderCheckInMood(showErr) {
+          if (showErr) {
+            $('mood-banner').classList.remove('hidden');
+            $('mood-grid-err').classList.remove('hidden');
+            $('mood-grid-box').className = 'p-3 rounded-md border border-red-600 bg-red-50-soft';
+          } else {
+            $('mood-banner').classList.add('hidden');
+            $('mood-grid-err').classList.add('hidden');
+            $('mood-grid-box').className = 'p-3 rounded-md border border-neutral-300 bg-white';
+          }
+
+          var grid = $('mood-grid');
+          grid.innerHTML = MOODS.map(function (m) {
+            var sel = draftMood === m.label;
+            return (
+              '<button type="button" data-mood="' + m.label + '" class="mood-btn min-h-80 p-2 rounded-md border flex flex-col items-center justify-center gap-2 cursor-pointer ' +
+              (sel ? 'border-2 border-neutral-900 bg-neutral-100' : 'border-neutral-300 bg-white hover-border-900') + '">' +
+              '<div class="w-10 h-10 rounded-full flex items-center justify-center ' +
+              (sel ? 'border-2 border-neutral-900 bg-white' : 'border border-neutral-900 bg-white') + '">' +
+              (sel ? '<div class="w-4 h-4 rounded-full bg-neutral-900"></div>' : '') +
+              '</div>' +
+              '<span class="text-xs ' + (sel ? 'font-bold text-neutral-900' : 'font-medium text-neutral-800') + '">' + m.label + '</span>' +
+              '</button>'
+            );
+          }).join('');
+
+          grid.querySelectorAll('.mood-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              draftMood = btn.getAttribute('data-mood');
+              renderCheckInMood(false);
+            });
+          });
+        }
+
+        function renderCheckInDetail(showIntensityErr) {
+          $('detail-selected-mood').textContent = draftMood || '-';
+          if (showIntensityErr) {
+            $('detail-banner').classList.remove('hidden');
+            $('intensity-err').classList.remove('hidden');
+            $('intensity-box').className = 'p-3 rounded-md border border-red-600 bg-red-50-soft flex flex-col gap-3';
+          } else {
+            $('detail-banner').classList.add('hidden');
+            $('intensity-err').classList.add('hidden');
+            $('intensity-box').className = 'p-3 rounded-md border border-neutral-300 bg-white flex flex-col gap-3';
+          }
+
+          $('intensity-label').textContent = draftIntensity !== null ? draftIntensity + ' / 5' : 'Non selezionata';
+          $('intensity-slider').value = draftIntensity !== null ? String(draftIntensity) : '3';
+
+          var stepsEl = $('intensity-steps');
+          stepsEl.innerHTML = [1, 2, 3, 4, 5].map(function (v) {
+            var active = draftIntensity === v;
+            return (
+              '<button type="button" data-val="' + v + '" class="intensity-step-btn min-h-44 rounded border text-sm font-semibold tabular-nums cursor-pointer ' +
+              (active ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-900 border-neutral-400 hover-border-900') + '">' +
+              v + '</button>'
+            );
+          }).join('');
+
+          stepsEl.querySelectorAll('.intensity-step-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              draftIntensity = Number(btn.getAttribute('data-val'));
+              renderCheckInDetail(false);
+            });
+          });
+
+          var zoneSel = $('checkin-zone');
+          zoneSel.innerHTML = state.zones.map(function (z) {
+            return '<option value="' + z.id + '"' + (z.id === draftZoneId ? ' selected' : '') + '>' + escapeHtml(z.name) + '</option>';
+          }).join('');
+
+          syncToggleVisual('checkin-anon-toggle', 'checkin-anon-track', 'checkin-anon-knob', draftAnonymous);
+        }
+
+        function renderCheckInConfirm() {
+          if (!lastSavedCheckIn) return;
+          var s = calculateStreak();
+          $('confirm-streak').textContent = s + (s === 1 ? ' giorno' : ' giorni');
+          $('confirm-mood').textContent = lastSavedCheckIn.mood + ' · ' + lastSavedCheckIn.intensity + '/5';
+          $('confirm-zone').textContent = getZoneName(lastSavedCheckIn.zoneId);
+        }
+
+        function getZoneShadeClass(avg, count) {
+          if (count === 0) return 'bg-white border-dashed text-neutral-600';
+          if (avg >= 4.2) return 'bg-neutral-800 text-white';
+          if (avg >= 3.5) return 'bg-neutral-500 text-white';
+          if (avg >= 2.8) return 'bg-neutral-300 text-neutral-900';
+          return 'bg-neutral-200 text-neutral-900';
+        }
+
+        function renderMap() {
+          $('btn-map-offline').textContent = mapOffline ? 'Offline: ON' : 'Offline: OFF';
+          if (mapOffline) {
+            $('map-offline-view').classList.remove('hidden');
+            $('map-online-view').classList.add('hidden');
+            return;
+          }
+          $('map-offline-view').classList.add('hidden');
+          $('map-online-view').classList.remove('hidden');
+
+          if (mapPeriod === 'today') {
+            $('btn-map-today').className = 'min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer';
+            $('btn-map-week').className = 'min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer';
+          } else {
+            $('btn-map-today').className = 'min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer';
+            $('btn-map-week').className = 'min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer';
+          }
+
+          var order = [
+            { id: 'biblioteca', extra: '' },
+            { id: 'aula-studio', extra: '' },
+            { id: 'cortile', extra: 'col-span-2 min-h-60' },
+            { id: 'mensa', extra: '' },
+            { id: 'giardino', extra: '' },
+            { id: 'palestra', extra: 'col-span-2 min-h-60' }
+          ];
+
+          var grid = $('map-zones-grid');
+          grid.innerHTML = order.map(function (item) {
+            var z = getZoneById(item.id);
+            var avg = mapPeriod === 'today' ? z.todayAvg : z.weekAvg;
+            var count = mapPeriod === 'today' ? z.todayCount : z.weekCount;
+            var shade = getZoneShadeClass(avg, count);
+            var sel = z.id === selectedZoneId;
+            return (
+              '<button type="button" data-zone="' + z.id + '" class="map-zone-btn min-h-68 p-2-5 rounded-lg border flex flex-col items-start justify-between text-left cursor-pointer ' +
+              shade + ' ' + (sel ? 'border-2 border-neutral-900 outline-selected' : 'border-neutral-700') + ' ' + item.extra + '">' +
+              '<span class="text-xs font-semibold leading-tight">' + escapeHtml(z.name) + '</span>' +
+              '<span class="text-11 tabular-nums opacity-90">' + (count > 0 ? avg.toFixed(1) + ' / 5 · ' + count : 'Nessun dato') + '</span>' +
+              '</button>'
+            );
+          }).join('');
+
+          grid.querySelectorAll('.map-zone-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              selectedZoneId = btn.getAttribute('data-zone');
+              renderMap();
+            });
+          });
+
+          var selZone = getZoneById(selectedZoneId);
+          var selAvg = mapPeriod === 'today' ? selZone.todayAvg : selZone.weekAvg;
+          var selCount = mapPeriod === 'today' ? selZone.todayCount : selZone.weekCount;
+          $('map-sel-name').textContent = selZone.name;
+          $('map-sel-avg').textContent = selCount > 0 ? selAvg.toFixed(1) + '/5' : '—';
+          $('map-sel-count').textContent = selCount + ' check-in';
+        }
+
+        function renderZoneDetail() {
+          var z = getZoneById(selectedZoneId);
+          $('zone-detail-title').textContent = z.name;
+          var body = $('zone-detail-body');
+
+          if (z.todayCount === 0 && z.weekCount === 0) {
+            body.innerHTML =
+              '<div class="border border-dashed border-neutral-400 rounded-md p-6 flex flex-col items-center text-center gap-4 bg-white">' +
+              '<div class="w-16 h-16 rounded-full border-2 border-dashed border-neutral-400 flex items-center justify-center">' +
+              '<div class="w-6 h-6 border border-dashed border-neutral-400"></div></div>' +
+              '<div class="flex flex-col gap-1-5">' +
+              '<h3 class="text-base font-semibold text-neutral-900">Ancora nessun check-in in ' + escapeHtml(z.name) + '</h3>' +
+              '<p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>' +
+              '</div>' +
+              '<div class="flex flex-col gap-2 w-full pt-1">' +
+              '<button type="button" id="btn-zone-empty-checkin" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">Fai il primo check-in</button>' +
+              '<button type="button" id="btn-zone-empty-back" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">Torna alla mappa</button>' +
+              '</div></div>';
+
+            $('btn-zone-empty-checkin').addEventListener('click', function () {
+              startCheckInFlow('screen-zone-detail', z.id);
+            });
+            $('btn-zone-empty-back').addEventListener('click', function () {
+              showScreen('screen-map');
+            });
+            return;
+          }
+
+          var barsHtml = z.hourly.map(function (bar) {
+            var pct = Math.max(8, Math.round((bar.value / 5) * 100));
+            var shade = bar.value >= 4 ? 'bg-neutral-900' : (bar.value >= 3 ? 'bg-neutral-600' : 'bg-neutral-400');
+            return (
+              '<div class="flex-1 h-full flex flex-col items-center justify-end gap-1">' +
+              '<span class="text-10 text-neutral-600 tabular-nums">' + bar.value.toFixed(1) + '</span>' +
+              '<div class="w-full max-w-bar border border-neutral-900 ' + shade + '" style="height:' + pct + '%"></div>' +
+              '</div>'
+            );
+          }).join('');
+
+          var labelsHtml = z.hourly.map(function (bar) {
+            return '<span class="flex-1 text-center text-11 text-neutral-600 tabular-nums">' + bar.hour + ':00</span>';
+          }).join('');
+
+          body.innerHTML =
+            '<div class="flex flex-col gap-4">' +
+            '<div class="grid grid-cols-2 gap-2">' +
+            '<div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1">' +
+            '<span class="text-11 text-neutral-600">Umore medio (oggi)</span>' +
+            '<span class="text-2xl font-bold text-neutral-900 tabular-nums">' + z.todayAvg.toFixed(1) + ' / 5</span>' +
+            '</div>' +
+            '<div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1">' +
+            '<span class="text-11 text-neutral-600">Check-in oggi</span>' +
+            '<span class="text-2xl font-bold text-neutral-900 tabular-nums">' + z.todayCount + '</span>' +
+            '</div></div>' +
+            '<div class="flex flex-col gap-2">' +
+            '<h2 class="text-sm font-semibold text-neutral-900">Andamento per ore</h2>' +
+            '<div class="border border-neutral-300 rounded-md p-3 bg-white">' +
+            '<div class="flex items-end justify-between gap-2 h-32 pt-2 border-b border-neutral-300">' + barsHtml + '</div>' +
+            '<div class="flex items-center justify-between gap-2 pt-1-5">' + labelsHtml + '</div>' +
+            '</div></div>' +
+            '<div class="border border-neutral-300 rounded-md p-4 bg-neutral-100">' +
+            '<p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>' +
+            '</div></div>' +
+            '<button type="button" id="btn-zone-stats" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">Il tuo andamento</button>';
+
+          $('btn-zone-stats').addEventListener('click', function () {
+            showScreen('screen-stats');
+          });
+        }
+
+        function renderStats() {
+          if (statsRange === 7) {
+            $('btn-stats-7').className = 'min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer';
+            $('btn-stats-30').className = 'min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer';
+          } else {
+            $('btn-stats-7').className = 'min-h-44 text-xs font-semibold bg-white text-neutral-900 cursor-pointer';
+            $('btn-stats-30').className = 'min-h-44 text-xs font-semibold bg-neutral-900 text-white cursor-pointer';
+          }
+          $('stats-chart-title').textContent = 'Andamento umore (' + statsRange + ' giorni)';
+
+          var points = [];
+          for (var i = 0; i < statsRange; i++) {
+            var daysAgo = statsRange - 1 - i;
+            var iso = getRelativeDateISO(daysAgo);
+            var matching = state.checkIns.filter(function (c) { return c.date === iso; });
+            var avg = matching.length > 0
+              ? Number((matching.reduce(function (s, x) { return s + x.moodScore; }, 0) / matching.length).toFixed(1))
+              : null;
+            var p = iso.split('-');
+            points.push({ iso: iso, label: p[2] + '/' + p[1], value: avg });
+          }
+
+          var width = 320, height = 140, padLeft = 24, padRight = 12, padTop = 14, padBottom = 22;
+          var plotW = width - padLeft - padRight;
+          var plotH = height - padTop - padBottom;
+
+          var coords = points.map(function (pt, idx) {
+            var x = points.length <= 1 ? padLeft + plotW / 2 : padLeft + (idx / (points.length - 1)) * plotW;
+            var y = pt.value !== null ? padTop + ((5 - pt.value) / 4) * plotH : null;
+            return { x: x, y: y, label: pt.label };
+          });
+
+          var valid = coords.filter(function (c) { return c.y !== null; });
+          var poly = valid.map(function (c) { return c.x.toFixed(1) + ',' + c.y.toFixed(1); }).join(' ');
+
+          var svg = '<svg viewBox="0 0 ' + width + ' ' + height + '" class="w-full h-auto block" role="img" aria-label="Grafico andamento umore">';
+          [1, 2, 3, 4, 5].forEach(function (tick) {
+            var ty = padTop + ((5 - tick) / 4) * plotH;
+            svg += '<line x1="' + padLeft + '" y1="' + ty + '" x2="' + (width - padRight) + '" y2="' + ty + '" stroke="#E5E5E5" stroke-width="1" />';
+            svg += '<text x="6" y="' + (ty + 3) + '" font-size="9" fill="#737373">' + tick + '</text>';
+          });
+          if (valid.length > 1) {
+            svg += '<polyline fill="none" stroke="#171717" stroke-width="1.75" points="' + poly + '" />';
+          }
+          var r = points.length > 10 ? 2.5 : 3.5;
+          valid.forEach(function (c) {
+            svg += '<circle cx="' + c.x + '" cy="' + c.y + '" r="' + r + '" fill="#FFFFFF" stroke="#171717" stroke-width="1.5" />';
+          });
+          coords.forEach(function (c, idx) {
+            var show = points.length <= 7 || idx === 0 || idx === Math.floor(points.length / 2) || idx === points.length - 1;
+            if (show) {
+              svg += '<text x="' + c.x + '" y="' + (height - 4) + '" font-size="9" text-anchor="middle" fill="#525252">' + c.label + '</text>';
+            }
+          });
+          svg += '</svg>';
+          $('stats-chart-container').innerHTML = svg;
+
+          var isoSet = {};
+          points.forEach(function (p) { isoSet[p.iso] = true; });
+          var periodItems = state.checkIns.filter(function (c) { return isoSet[c.date]; });
+          var avgPeriod = calculateAvgMood(periodItems);
+          $('stats-avg').textContent = avgPeriod > 0 ? avgPeriod.toFixed(1) + ' / 5' : '—';
+
+          if (periodItems.length > 0) {
+            var best = periodItems.slice().sort(function (a, b) { return b.moodScore - a.moodScore; })[0];
+            $('stats-best-date').textContent = formatDateItalian(best.date);
+            $('stats-best-sub').textContent = best.mood + ' (' + best.moodScore.toFixed(1) + '/5)';
+          } else {
+            $('stats-best-date').textContent = '—';
+            $('stats-best-sub').textContent = '';
+          }
+        }
+
+        function renderHistory() {
+          var filters = ['Tutti', 'Felice', 'Stanco', 'Stressato'];
+          var fEl = $('history-filters');
+          fEl.innerHTML = filters.map(function (f) {
+            var sel = historyFilter === f;
+            return (
+              '<button type="button" data-filter="' + f + '" class="hist-chip-btn min-h-44 px-3-5 py-2 rounded-full border text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer ' +
+              (sel ? 'border-neutral-900 bg-neutral-900 text-white' : 'border-neutral-400 bg-white text-neutral-900 hover-border-900') + '">' +
+              f + '</button>'
+            );
+          }).join('');
+
+          fEl.querySelectorAll('.hist-chip-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              historyFilter = btn.getAttribute('data-filter');
+              renderHistory();
+            });
+          });
+
+          var sorted = state.checkIns.slice().sort(function (a, b) {
+            return (b.date + ' ' + b.time).localeCompare(a.date + ' ' + a.time);
+          });
+          var filtered = historyFilter === 'Tutti'
+            ? sorted
+            : sorted.filter(function (c) { return c.mood === historyFilter; });
+
+          var listEl = $('history-list');
+          if (state.checkIns.length === 0 || filtered.length === 0) {
+            var showAllBtn = state.checkIns.length > 0
+              ? '<button type="button" id="btn-hist-all" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-white text-neutral-900 border border-neutral-900 hover-bg-100 cursor-pointer">Mostra tutti</button>'
+              : '';
+            listEl.innerHTML =
+              '<div class="border border-dashed border-neutral-400 rounded-md p-6 flex flex-col items-center text-center gap-4 bg-white">' +
+              '<div class="w-16 h-16 rounded-full border-2 border-dashed border-neutral-400 flex items-center justify-center"><div class="w-6 h-6 border border-dashed border-neutral-400"></div></div>' +
+              '<div class="flex flex-col gap-1-5">' +
+              '<h3 class="text-base font-semibold text-neutral-900">Nessun check-in registrato</h3>' +
+              '<p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>' +
+              '</div>' +
+              '<div class="flex flex-col gap-2 w-full pt-1">' +
+              '<button type="button" id="btn-hist-empty-checkin" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">Registra il tuo primo umore</button>' +
+              showAllBtn +
+              '</div></div>';
+
+            $('btn-hist-empty-checkin').addEventListener('click', function () {
+              startCheckInFlow('screen-history');
+            });
+            if ($('btn-hist-all')) {
+              $('btn-hist-all').addEventListener('click', function () {
+                historyFilter = 'Tutti';
+                renderHistory();
+              });
+            }
+            return;
+          }
+
+          listEl.innerHTML = filtered.map(function (item) {
+            return (
+              '<div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1-5">' +
+              '<div class="flex items-center justify-between gap-2">' +
+              '<div class="flex items-center gap-2">' +
+              '<div class="w-3 h-3 rounded-full border border-neutral-900 bg-neutral-900 shrink-0"></div>' +
+              '<span class="text-sm font-semibold text-neutral-900">' + escapeHtml(item.mood) + '</span>' +
+              '</div>' +
+              '<span class="text-xs font-semibold text-neutral-900 tabular-nums">Intensità ' + item.intensity + '/5</span>' +
+              '</div>' +
+              '<div class="flex items-center justify-between text-11 text-neutral-600 tabular-nums">' +
+              '<span>' + formatDateItalian(item.date) + ' · ' + escapeHtml(item.time) + '</span>' +
+              '<span>' + escapeHtml(getZoneName(item.zoneId)) + '</span>' +
+              '</div>' +
+              (item.note ? '<p class="text-xs text-neutral-700 pt-1 border-t border-neutral-200">' + escapeHtml(item.note) + '</p>' : '') +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        function renderBoard() {
+          var chips = [{ id: 'all', name: 'Tutte' }].concat(state.zones);
+          var fEl = $('board-filters');
+          fEl.innerHTML = chips.map(function (c) {
+            var sel = boardFilter === c.id;
+            return (
+              '<button type="button" data-z="' + c.id + '" class="board-chip-btn min-h-44 px-3-5 py-2 rounded-full border text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer ' +
+              (sel ? 'border-neutral-900 bg-neutral-900 text-white' : 'border-neutral-400 bg-white text-neutral-900 hover-border-900') + '">' +
+              escapeHtml(c.name) + '</button>'
+            );
+          }).join('');
+
+          fEl.querySelectorAll('.board-chip-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              boardFilter = btn.getAttribute('data-z');
+              renderBoard();
+            });
+          });
+
+          var filtered = boardFilter === 'all'
+            ? state.posts
+            : state.posts.filter(function (p) { return p.zoneId === boardFilter; });
+
+          var feedEl = $('board-feed');
+          if (filtered.length === 0) {
+            feedEl.innerHTML =
+              '<div class="border border-dashed border-neutral-400 rounded-md p-6 flex flex-col items-center text-center gap-4 bg-white">' +
+              '<div class="w-16 h-16 rounded-full border-2 border-dashed border-neutral-400 flex items-center justify-center"><div class="w-6 h-6 border border-dashed border-neutral-400"></div></div>' +
+              '<div class="flex flex-col gap-1-5">' +
+              '<h3 class="text-base font-semibold text-neutral-900">Nessun post in questa zona</h3>' +
+              '<p class="text-xs text-neutral-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>' +
+              '</div>' +
+              '<button type="button" id="btn-board-empty-new" class="min-h-44 w-full px-4 py-2-5 text-sm font-medium rounded-md bg-neutral-900 text-white border border-neutral-900 hover-bg-800 cursor-pointer">Scrivi il primo post</button>' +
+              '</div>';
+
+            $('btn-board-empty-new').addEventListener('click', function () {
+              newPostZoneId = boardFilter === 'all' ? null : boardFilter;
+              $('newpost-text').value = '';
+              showScreen('screen-board-new');
+            });
+            return;
+          }
+
+          feedEl.innerHTML = filtered.map(function (post) {
+            var authorName = post.anonymous ? 'Anonimo' : post.author;
+            return (
+              '<div class="border border-neutral-300 rounded-md p-3-5 bg-white flex flex-col gap-2-5">' +
+              '<div class="flex items-center justify-between gap-2 text-xs">' +
+              '<div class="flex items-center gap-2">' +
+              '<span class="font-semibold text-neutral-900">' + escapeHtml(authorName) + '</span>' +
+              '<span class="text-neutral-400">·</span>' +
+              '<span class="border border-neutral-400 px-1-5 py-0-5 text-11 rounded text-neutral-800">' + escapeHtml(getZoneName(post.zoneId)) + '</span>' +
+              '</div>' +
+              '<span class="text-11 text-neutral-500">' + escapeHtml(post.timestamp) + '</span>' +
+              '</div>' +
+              '<p class="text-sm text-neutral-900 leading-relaxed">' + escapeHtml(post.text) + '</p>' +
+              '<div class="flex items-center gap-2 pt-1 border-t border-neutral-200">' +
+              '<button type="button" data-like="' + post.id + '" class="board-like-btn min-h-44 px-3 rounded border text-xs font-medium cursor-pointer ' +
+              (post.likedByMe ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-900 border-neutral-400 hover-border-900') + '">' +
+              'Mi piace (' + post.likes + ')</button>' +
+              '<button type="button" data-open="' + post.id + '" class="board-open-btn min-h-44 px-3 rounded border border-neutral-400 bg-white text-neutral-900 text-xs font-medium hover-border-900 cursor-pointer">' +
+              'Rispondi (' + post.replies.length + ')</button>' +
+              '</div></div>'
+            );
+          }).join('');
+
+          feedEl.querySelectorAll('.board-like-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              togglePostLike(btn.getAttribute('data-like'));
+              renderBoard();
+            });
+          });
+          feedEl.querySelectorAll('.board-open-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              selectedPostId = btn.getAttribute('data-open');
+              showScreen('screen-board-detail');
+            });
+          });
+        }
+
+        function togglePostLike(postId) {
+          state.posts = state.posts.map(function (p) {
+            if (p.id !== postId) return p;
+            var liked = !p.likedByMe;
+            return Object.assign({}, p, {
+              likedByMe: liked,
+              likes: liked ? p.likes + 1 : Math.max(0, p.likes - 1)
+            });
+          });
+          saveState();
+        }
+
+        function renderPostDetail() {
+          var post = state.posts.filter(function (p) { return p.id === selectedPostId; })[0] || state.posts[0];
+          if (!post) return;
+          selectedPostId = post.id;
+
+          $('reply-banner').classList.add('hidden');
+          $('reply-input').className = 'flex-1 min-h-44 px-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900';
+
+          var repliesHtml = post.replies.length === 0
+            ? '<div class="border border-dashed border-neutral-300 rounded-md p-4 text-center"><p class="text-xs text-neutral-500">Ancora nessuna risposta. Scrivi la prima qui sotto.</p></div>'
+            : post.replies.map(function (r) {
+                return (
+                  '<div class="border border-neutral-300 rounded-md p-3 bg-white flex flex-col gap-1">' +
+                  '<div class="flex items-center justify-between text-11 text-neutral-500">' +
+                  '<span class="font-semibold text-neutral-900">' + escapeHtml(r.author) + '</span>' +
+                  '<span>' + escapeHtml(r.timestamp) + '</span></div>' +
+                  '<p class="text-xs text-neutral-800 leading-relaxed">' + escapeHtml(r.text) + '</p></div>'
+                );
+              }).join('');
+
+          $('post-detail-body').innerHTML =
+            '<div class="border border-neutral-900 rounded-md p-4 bg-neutral-100 flex flex-col gap-3">' +
+            '<div class="flex items-center justify-between text-xs">' +
+            '<div class="flex items-center gap-2">' +
+            '<span class="font-bold text-neutral-900">' + escapeHtml(post.anonymous ? 'Anonimo' : post.author) + '</span>' +
+            '<span class="text-neutral-400">·</span>' +
+            '<span class="border border-neutral-500 px-1-5 py-0-5 text-11 rounded bg-white text-neutral-900">' + escapeHtml(getZoneName(post.zoneId)) + '</span>' +
+            '</div>' +
+            '<span class="text-11 text-neutral-600">' + escapeHtml(post.timestamp) + '</span></div>' +
+            '<p class="text-sm text-neutral-900 leading-relaxed">' + escapeHtml(post.text) + '</p>' +
+            '<div class="flex items-center gap-2 pt-1">' +
+            '<button type="button" id="btn-detail-like" class="min-h-44 px-3 rounded border text-xs font-medium cursor-pointer ' +
+            (post.likedByMe ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-900 border-neutral-500') + '">' +
+            'Mi piace (' + post.likes + ')</button></div></div>' +
+            '<div class="flex flex-col gap-2">' +
+            '<h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-600">Risposte (' + post.replies.length + ')</h2>' +
+            '<div class="flex flex-col gap-2">' + repliesHtml + '</div></div>';
+
+          $('btn-detail-like').addEventListener('click', function () {
+            togglePostLike(post.id);
+            renderPostDetail();
+          });
+        }
+
+        function renderNewPost(errState) {
+          var errors = errState || {};
+          var txt = $('newpost-text').value;
+          $('newpost-char-count').textContent = txt.trim().length + ' / 10 min';
+
+          if (errors.text || errors.zone) {
+            $('newpost-banner').classList.remove('hidden');
+          } else {
+            $('newpost-banner').classList.add('hidden');
+          }
+
+          if (errors.text) {
+            $('newpost-text-err').classList.remove('hidden');
+            $('newpost-text').className = 'p-3 text-sm rounded-md border border-red-600 bg-red-50-soft text-neutral-900 focus-border-900 resize-none';
+          } else {
+            $('newpost-text-err').classList.add('hidden');
+            $('newpost-text').className = 'p-3 text-sm rounded-md border border-neutral-400 bg-white text-neutral-900 focus-border-900 resize-none';
+          }
+
+          var chipsBox = $('newpost-zone-chips');
+          if (errors.zone) {
+            $('newpost-zone-err').classList.remove('hidden');
+            chipsBox.className = 'p-2-5 rounded-md border border-red-600 bg-red-50-soft flex flex-wrap gap-2';
+          } else {
+            $('newpost-zone-err').classList.add('hidden');
+            chipsBox.className = 'p-2-5 rounded-md border border-neutral-300 bg-white flex flex-wrap gap-2';
+          }
+
+          chipsBox.innerHTML = state.zones.map(function (z) {
+            var sel = newPostZoneId === z.id;
+            var cls = (errors.zone && !sel)
+              ? 'border-red-600 text-red-700 bg-white'
+              : (sel ? 'border-neutral-900 bg-neutral-900 text-white' : 'border-neutral-400 bg-white text-neutral-900 hover-border-900');
+            return '<button type="button" data-z="' + z.id + '" class="np-zone-chip min-h-44 px-3-5 py-2 rounded-full border text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer ' + cls + '">' + escapeHtml(z.name) + '</button>';
+          }).join('');
+
+          chipsBox.querySelectorAll('.np-zone-chip').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              newPostZoneId = btn.getAttribute('data-z');
+              renderNewPost({ text: errors.text, zone: false });
+            });
+          });
+
+          syncToggleVisual('newpost-anon-toggle', 'newpost-anon-track', 'newpost-anon-knob', $('newpost-anon-toggle').checked);
+        }
+
+        function renderProfile() {
+          var s = state.settings;
+          $('prof-initials').textContent = (s.nickname || 'ST').slice(0, 2).toUpperCase();
+          $('prof-display-name').textContent = s.nickname;
+          $('prof-display-campus').textContent = s.campus;
+          $('prof-display-email').textContent = s.email;
+
+          $('prof-nickname').value = s.nickname;
+          var campusSel = $('prof-campus');
+          campusSel.innerHTML = CAMPUSES.map(function (c) {
+            return '<option value="' + escapeHtml(c) + '"' + (c === s.campus ? ' selected' : '') + '>' + escapeHtml(c) + '</option>';
+          }).join('');
+          $('prof-lang').value = s.language || 'Italiano';
+
+          syncToggleVisual('prof-anon-toggle', 'prof-anon-track', 'prof-anon-knob', s.defaultAnonymous);
+          syncToggleVisual('prof-map-toggle', 'prof-map-track', 'prof-map-knob', s.showMoodOnMap);
+          syncToggleVisual('prof-rem-toggle', 'prof-rem-track', 'prof-rem-knob', s.dailyReminder);
+
+          $('prof-rem-time').value = s.reminderTime || '20:00';
+          if (s.dailyReminder) {
+            $('prof-rem-time-row').classList.remove('hidden');
+          } else {
+            $('prof-rem-time-row').classList.add('hidden');
+          }
+        }
+
+        // ==================== FLOW ACTIONS ====================
+        function startCheckInFlow(origin, preselectedZone) {
+          checkInOrigin = origin;
+          draftMood = null;
+          draftIntensity = null;
+          draftZoneId = preselectedZone || 'mensa';
+          draftAnonymous = state.settings.defaultAnonymous;
+          $('checkin-note').value = '';
+          showScreen('screen-checkin-mood');
+        }
+
+        function finishSplash() {
+          if (currentScreen !== 'screen-splash') return;
+          if (!state.onboarded) showScreen('screen-onboarding');
+          else if (!state.authenticated) showScreen('screen-auth');
+          else if (!state.profileCompleted) showScreen('screen-profile-setup');
+          else showScreen('screen-home');
+        }
+
+        function flashSavedNotice() {
+          var el = $('profile-saved-notice');
+          el.classList.remove('hidden');
+          window.setTimeout(function () { el.classList.add('hidden'); }, 1500);
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        $('btn-splash-continue').addEventListener('click', finishSplash);
+        window.setTimeout(finishSplash, 1100);
+
+        $('btn-onboarding-skip').addEventListener('click', function () {
+          state.onboarded = true;
+          saveState();
+          showScreen('screen-auth');
+        });
+        $('btn-onboarding-next').addEventListener('click', function () {
+          if (onboardingStep < ONBOARDING_SLIDES.length - 1) {
+            onboardingStep += 1;
+            renderOnboarding();
+          } else {
+            state.onboarded = true;
+            saveState();
+            showScreen('screen-auth');
+          }
+        });
+
+        $('tab-auth-login').addEventListener('click', function () { authMode = 'login'; renderAuth(); });
+        $('tab-auth-register').addEventListener('click', function () { authMode = 'register'; renderAuth(); });
+        $('auth-form').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = $('auth-email').value.trim();
+          var pass = $('auth-password').value.trim();
+          var badEmail = !email || email.indexOf('@') === -1;
+          var badPass = !pass || pass.length < 6;
+
+          $('auth-email').className = 'min-h-44 px-3 py-2 text-sm rounded-md border bg-white text-neutral-900 focus-border-900 ' + (badEmail ? 'border-red-600' : 'border-neutral-400');
+          $('auth-password').className = 'min-h-44 px-3 py-2 text-sm rounded-md border bg-white text-neutral-900 focus-border-900 ' + (badPass ? 'border-red-600' : 'border-neutral-400');
+          if (badEmail) $('auth-email-err').classList.remove('hidden'); else $('auth-email-err').classList.add('hidden');
+          if (badPass) $('auth-pass-err').classList.remove('hidden'); else $('auth-pass-err').classList.add('hidden');
+
+          if (badEmail || badPass) {
+            $('auth-banner').classList.remove('hidden');
+            return;
+          }
+          state.authenticated = true;
+          state.settings.email = email;
+          saveState();
+          showScreen(state.profileCompleted ? 'screen-home' : 'screen-profile-setup');
+        });
+        $('btn-auth-google').addEventListener('click', function () {
+          var email = $('auth-email').value.trim() || 'studente@universita.it';
+          state.authenticated = true;
+          state.settings.email = email;
+          saveState();
+          showScreen(state.profileCompleted ? 'screen-home' : 'screen-profile-setup');
+        });
+
+        $('btn-setup-save').addEventListener('click', function () {
+          var nick = $('setup-nickname').value.trim();
+          var badNick = !nick;
+          var badCampus = !setupCampus;
+          $('setup-nickname').className = 'min-h-44 px-3 py-2 text-sm rounded-md border bg-white text-neutral-900 focus-border-900 ' + (badNick ? 'border-red-600' : 'border-neutral-400');
+          $('setup-campus-list').className = 'flex flex-col gap-2 p-2 rounded-md border ' + (badCampus ? 'border-red-600' : 'border-neutral-300');
+          if (badNick) $('setup-nickname-err').classList.remove('hidden'); else $('setup-nickname-err').classList.add('hidden');
+          if (badCampus) $('setup-campus-err').classList.remove('hidden'); else $('setup-campus-err').classList.add('hidden');
+
+          if (badNick || badCampus) {
+            $('setup-banner').classList.remove('hidden');
+            return;
+          }
+          state.profileCompleted = true;
+          state.settings.nickname = nick;
+          state.settings.campus = setupCampus;
+          saveState();
+          showScreen('screen-home');
+        });
+
+        $('btn-home-checkin').addEventListener('click', function () {
+          startCheckInFlow('screen-home');
+        });
+
+        $('btn-mood-back').addEventListener('click', function () { showScreen(checkInOrigin); });
+        $('btn-mood-continue').addEventListener('click', function () {
+          if (!draftMood) {
+            renderCheckInMood(true);
+            return;
+          }
+          showScreen('screen-checkin-detail');
+        });
+
+        $('btn-detail-back').addEventListener('click', function () { showScreen('screen-checkin-mood'); });
+        $('intensity-slider').addEventListener('input', function () {
+          draftIntensity = Number($('intensity-slider').value);
+          renderCheckInDetail(false);
+        });
+        $('checkin-zone').addEventListener('change', function () {
+          draftZoneId = $('checkin-zone').value;
+        });
+        $('checkin-anon-toggle').addEventListener('change', function () {
+          draftAnonymous = $('checkin-anon-toggle').checked;
+          syncToggleVisual('checkin-anon-toggle', 'checkin-anon-track', 'checkin-anon-knob', draftAnonymous);
+        });
+
+        $('btn-detail-save').addEventListener('click', function () {
+          if (draftIntensity === null || draftIntensity < 1 || draftIntensity > 5) {
+            renderCheckInDetail(true);
+            return;
+          }
+          var now = new Date();
+          var hh = String(now.getHours()).padStart(2, '0');
+          var mm = String(now.getMinutes()).padStart(2, '0');
+          var moodScore = computeMoodScore(draftMood, draftIntensity);
+          var noteText = $('checkin-note').value.trim();
+
+          var newCI = {
+            id: 'ci-' + Date.now(),
+            date: formatDateISO(now),
+            time: hh + ':' + mm,
+            mood: draftMood,
+            intensity: draftIntensity,
+            moodScore: moodScore,
+            note: noteText,
+            zoneId: draftZoneId,
+            anonymous: draftAnonymous
+          };
+
+          state.checkIns.unshift(newCI);
+          state.zones = state.zones.map(function (z) {
+            if (z.id !== draftZoneId) return z;
+            var nextTodayCount = z.todayCount + 1;
+            var nextTodayAvg = Number(((z.todayAvg * z.todayCount + moodScore) / nextTodayCount).toFixed(1));
+            var nextWeekCount = z.weekCount + 1;
+            var nextWeekAvg = Number(((z.weekAvg * z.weekCount + moodScore) / nextWeekCount).toFixed(1));
+
+            var defaultHours = ['09', '11', '13', '15', '17', '19'];
+            var curHour = now.getHours();
+            var closest = defaultHours.reduce(function (best, h) {
+              return Math.abs(Number(h) - curHour) < Math.abs(Number(best) - curHour) ? h : best;
+            });
+
+            var nextHourly = z.hourly.length === 0
+              ? defaultHours.map(function (h) {
+                  return { hour: h, value: h === closest ? moodScore : 0, count: h === closest ? 1 : 0 };
+                })
+              : z.hourly.map(function (bar) {
+                  if (bar.hour !== closest) return bar;
+                  var nc = bar.count + 1;
+                  return { hour: bar.hour, value: Number(((bar.value * bar.count + moodScore) / nc).toFixed(1)), count: nc };
+                });
+
+            return {
+              id: z.id, name: z.name,
+              todayCount: nextTodayCount, todayAvg: nextTodayAvg,
+              weekCount: nextWeekCount, weekAvg: nextWeekAvg,
+              hourly: nextHourly
+            };
+          });
+
+          lastSavedCheckIn = { mood: draftMood, intensity: draftIntensity, zoneId: draftZoneId };
+          selectedZoneId = draftZoneId;
+          saveState();
+          showScreen('screen-checkin-confirm');
+        });
+
+        $('btn-confirm-home').addEventListener('click', function () { showScreen('screen-home'); });
+        $('btn-confirm-map').addEventListener('click', function () { showScreen('screen-map'); });
+
+        $('btn-map-offline').addEventListener('click', function () { mapOffline = !mapOffline; renderMap(); });
+        $('btn-map-retry-banner').addEventListener('click', function () { mapOffline = false; renderMap(); });
+        $('btn-map-retry-box').addEventListener('click', function () { mapOffline = false; renderMap(); });
+        $('btn-map-today').addEventListener('click', function () { mapPeriod = 'today'; renderMap(); });
+        $('btn-map-week').addEventListener('click', function () { mapPeriod = 'week'; renderMap(); });
+        $('btn-map-zone-detail').addEventListener('click', function () { showScreen('screen-zone-detail'); });
+
+        $('btn-zone-back').addEventListener('click', function () { showScreen('screen-map'); });
+
+        $('btn-stats-back').addEventListener('click', function () { showScreen('screen-zone-detail'); });
+        $('btn-stats-7').addEventListener('click', function () { statsRange = 7; renderStats(); });
+        $('btn-stats-30').addEventListener('click', function () { statsRange = 30; renderStats(); });
+        $('btn-stats-history').addEventListener('click', function () {
+          historyOrigin = 'screen-stats';
+          showScreen('screen-history');
+        });
+
+        $('btn-history-back').addEventListener('click', function () { showScreen(historyOrigin); });
+
+        $('btn-board-new').addEventListener('click', function () {
+          newPostZoneId = boardFilter === 'all' ? null : boardFilter;
+          $('newpost-text').value = '';
+          $('newpost-anon-toggle').checked = state.settings.defaultAnonymous;
+          showScreen('screen-board-new');
+        });
+        $('btn-post-detail-back').addEventListener('click', function () { showScreen('screen-board'); });
+        $('reply-form').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var val = $('reply-input').value.trim();
+          if (!val) {
+            $('reply-banner').classList.remove('hidden');
+            $('reply-input').className = 'flex-1 min-h-44 px-3 text-sm rounded-md border border-red-600 bg-white text-neutral-900 focus-border-900';
+            return;
+          }
+          state.posts = state.posts.map(function (p) {
+            if (p.id !== selectedPostId) return p;
+            return Object.assign({}, p, {
+              replies: p.replies.concat([{
+                id: 'rep-' + Date.now(),
+                author: 'Anonimo',
+                text: val,
+                timestamp: 'Adesso'
+              }])
+            });
+          });
+          $('reply-input').value = '';
+          saveState();
+          renderPostDetail();
+        });
+
+        $('btn-newpost-back').addEventListener('click', function () { showScreen('screen-board'); });
+        $('newpost-text').addEventListener('input', function () {
+          var len = $('newpost-text').value.trim().length;
+          $('newpost-char-count').textContent = len + ' / 10 min';
+        });
+        $('newpost-anon-toggle').addEventListener('change', function () {
+          syncToggleVisual('newpost-anon-toggle', 'newpost-anon-track', 'newpost-anon-knob', $('newpost-anon-toggle').checked);
+        });
+        $('btn-newpost-publish').addEventListener('click', function () {
+          var txt = $('newpost-text').value.trim();
+          var badText = txt.length < 10;
+          var badZone = !newPostZoneId;
+          if (badText || badZone) {
+            renderNewPost({ text: badText, zone: badZone });
+            return;
+          }
+          var anon = $('newpost-anon-toggle').checked;
+          state.posts.unshift({
+            id: 'post-' + Date.now(),
+            author: anon ? 'Anonimo' : state.settings.nickname,
+            anonymous: anon,
+            zoneId: newPostZoneId,
+            text: txt,
+            timestamp: 'Adesso',
+            likes: 0,
+            likedByMe: false,
+            replies: []
+          });
+          saveState();
+          showScreen('screen-board');
+        });
+
+        // Profile listeners
+        $('prof-nickname').addEventListener('input', function () {
+          state.settings.nickname = $('prof-nickname').value;
+          $('prof-display-name').textContent = state.settings.nickname;
+          $('prof-initials').textContent = (state.settings.nickname || 'ST').slice(0, 2).toUpperCase();
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-campus').addEventListener('change', function () {
+          state.settings.campus = $('prof-campus').value;
+          $('prof-display-campus').textContent = state.settings.campus;
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-lang').addEventListener('change', function () {
+          state.settings.language = $('prof-lang').value;
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-anon-toggle').addEventListener('change', function () {
+          state.settings.defaultAnonymous = $('prof-anon-toggle').checked;
+          syncToggleVisual('prof-anon-toggle', 'prof-anon-track', 'prof-anon-knob', state.settings.defaultAnonymous);
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-map-toggle').addEventListener('change', function () {
+          state.settings.showMoodOnMap = $('prof-map-toggle').checked;
+          syncToggleVisual('prof-map-toggle', 'prof-map-track', 'prof-map-knob', state.settings.showMoodOnMap);
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-rem-toggle').addEventListener('change', function () {
+          state.settings.dailyReminder = $('prof-rem-toggle').checked;
+          syncToggleVisual('prof-rem-toggle', 'prof-rem-track', 'prof-rem-knob', state.settings.dailyReminder);
+          if (state.settings.dailyReminder) $('prof-rem-time-row').classList.remove('hidden');
+          else $('prof-rem-time-row').classList.add('hidden');
+          saveState();
+          flashSavedNotice();
+        });
+        $('prof-rem-time').addEventListener('change', function () {
+          state.settings.reminderTime = $('prof-rem-time').value;
+          saveState();
+          flashSavedNotice();
+        });
+
+        $('btn-prof-clear').addEventListener('click', function () {
+          state.checkIns = [];
+          saveState();
+          historyOrigin = 'screen-home';
+          showScreen('screen-history');
+        });
+        $('btn-prof-reset').addEventListener('click', function () {
+          var fresh = createInitialState();
+          fresh.onboarded = true;
+          fresh.authenticated = true;
+          fresh.profileCompleted = true;
+          fresh.settings = state.settings;
+          state = fresh;
+          saveState();
+          showScreen('screen-home');
+        });
+        $('btn-prof-logout').addEventListener('click', function () {
+          state.onboarded = false;
+          state.authenticated = false;
+          state.profileCompleted = false;
+          state.zones = createMockZones();
+          onboardingStep = 0;
+          saveState();
+          showScreen('screen-onboarding');
+        });
+
+        // Tab bar listeners
+        document.querySelectorAll('.tab-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var tab = btn.getAttribute('data-tab');
+            showScreen('screen-' + tab);
+          });
+        });
+
+        // Initial render
+        showScreen('screen-splash');
+      })();
+    </script>
   </body>
 </html>
-
