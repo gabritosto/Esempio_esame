@@ -1,0 +1,6 @@
+{
+  "name": "MoodMap",
+  "description": "Wireframe low-fidelity mobile-first per registrare l'umore universitario e visualizzare lo stato del campus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
